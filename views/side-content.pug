@@ -1,0 +1,13 @@
+- var id = 0
+each category in categories
+  button(
+    onclick='openAccordion("id")'
+    class='w3-button w3-block w3-center category'
+  )= category.name
+  #id(class='w3-container w3-hide content')
+    each sentence in category.content
+      button(
+        onclick='addSentence(this.innerHTML)'
+        class='w3-button w3-left-align w3-block'
+        style='width:100%;white-space:normal'
+      )= sentence
