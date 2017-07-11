@@ -19,5 +19,3 @@ lr.on('end',function(){
     if(err)return handleError(err);
   });
 });
-
-//test
