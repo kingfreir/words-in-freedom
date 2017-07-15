@@ -4,16 +4,16 @@
   "description": "MANIFESTO MACHINE",
   "main": "index.js",
   "dependencies": {
-    "browserify": "^14.3.0",
+    "bootstrap": "^3.3.7",
     "express": "^4.15.2",
-    "init": "^0.1.2",
     "jquery": "^3.2.1",
     "line-by-line": "^0.1.5",
     "mongoose": "^4.10.5",
     "pug": "^2.0.0-rc.2"
   },
   "devDependencies": {
-    "gulp": "^3.9.1"
+    "gulp": "^3.9.1",
+    "webpack": "^3.3.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
