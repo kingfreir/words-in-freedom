@@ -1,25 +1,13 @@
 doctype html
 head
-  title Manifesto Machine
+  title= title
   link(rel='stylesheet' type='text/css' href='w3.css')
-  link(href='https://fonts.googleapis.com/css?family=Zilla+Slab' rel='stylesheet')
   link(rel='stylesheet' type='text/css' href='index.css')
-  link(rel="stylesheet" href="https://unpkg.com/simplebar@latest/dist/simplebar.css")
-  script(src="https://unpkg.com/simplebar@latest/dist/simplebar.js")
-  script(type='text/javascript' src='jquery-3.2.1.min.js')
-  script(type='text/javascript' src='chroma.min.js')
-  script(type='text/javascript' src='index.js')
+  script(type='text/javascript' src='bundle.js')
 body(class='w3-display-container')
-  #edit(class='w3-modal')
-    div(class='w3-modal-content')
-      #edit-container(class='w3-container')
-        span(
-          onclick="document.getElementById('edit').style.display='none'"
-          class='w3-button w3-display-topright'
-          ) &times;
   #main(class='')
-    h1#title Manifesto Machine
-    #side-panel(class='shared' data-simplebar)
+    h1#title= title
+    #side-panel(class='shared')
       include side-content.pug
     #main-panel(class='w3-container shared')
       include main-content.pug
