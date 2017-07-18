@@ -70,7 +70,8 @@
 var $ = __webpack_require__(1)
 var chroma = __webpack_require__(2)
 
-function colorchange(val){
+$('#range-val').change(function(){
+    var val = $(this).val();
     var chromaval = chroma(+val);
     var hsvh = chroma(+val).get('hsv.h')+210;
     var cval = chroma(+val).set('hsv.h',hsvh);
@@ -80,34 +81,34 @@ function colorchange(val){
     $('.content').css({'color':chromaval});
     $('.category').css({'color':chromaval});
     $('.colored').css({'color':chromaval});
-    $('.simplebar-scrollbar').css({'background':chromaval})
-}
+})
 
-function fontSizeChange(val){
-  $('#main-panel').css({'font-size':val+'em'});
-}
+$('#range-font').change(function(){
+  $('#main-panel').css({'font-size':$(this).val()+'em'});
+})
 
-function lineHeightChange(val){
-  $('#main-panel').css({'line-height':val});
-}
-function openAccordion(id) {
-    var x = document.getElementById(id);
-    if (x.className.indexOf("w3-show") == -1) {
-        x.className += " w3-show";
+$('#range-height').change(function(){
+  $('#main-panel').css({'line-height':$(this).val()});
+})
+
+$('.category').click(function() {
+  var el = $(this).next();
+    if (!el.hasClass('w3-show')) {
+        el.addClass('w3-show');
     } else {
-        x.className = x.className.replace(" w3-show", "");
+        el.removeClass('w3-show')
     }
-}
+})
 
-function addSentence(sentence){
-
+$('.sentence').click(function(){
+  console.log('content click '+$(this).text())
+  var sentence = $(this).text();
   var color = $('#title').css('color');
-  console.log(sentence+' '+color);
   $('#main-panel').append(
     '<span class="colored w3-hover-grayscale" style="color:'+color+'">'+sentence+' </span>'
     +'<div class="w3-display-topright" style="display:none">&times;</div>'
   );
-}
+})
 
 /***/ }),
 /* 1 */
