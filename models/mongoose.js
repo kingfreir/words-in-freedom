@@ -29,3 +29,7 @@ var drawer = mongoose.model('drawer',drawerSchema);
 exports.add_drawer = function(dname){
   return new drawer({name:dname});
 }
+
+exports.get_drawers = function(callback){
+  drawer.find({},callback);
+}
