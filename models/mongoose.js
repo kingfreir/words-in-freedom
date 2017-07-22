@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 //net start MongoDB to start mongodb server
-mongoose.connect('mongodb://localhost/test');
+mongoose.connect('mongodb://127.0.0.1:27017');
 
 var db = mongoose.connection;
 
@@ -17,7 +17,6 @@ var drawerSchema = mongoose.Schema({
 
 drawerSchema.methods.add = function(sentence){
   this.content.push(sentence);
-  console.log('sentence added: '+sentence);
 }
 
 drawerSchema.methods.replace = function(arr){
@@ -32,4 +31,21 @@ exports.add_drawer = function(dname){
 
 exports.get_drawers = function(callback){
   drawer.find({},callback);
+}
+
+var fontSchema = mongoose.Schema({
+  family: String,
+  src: String,
+  format: String
+})
+
+var font = mongoose.model('font',fontSchema);
+
+exports.add_font = function(fname,fsrc,fformat){
+  return new font({family:fname,src:fsrc,format:fformat});
+}
+
+//callback is function(err,data)
+exports.get_fonts = function(callback){
+  font.find({},callback)
 }
