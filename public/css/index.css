@@ -78,7 +78,19 @@
   position:absolute;
   left:30%;
   bottom:0%;
-  padding: 8 px;
+  padding: 8px;
+}
+
+#sliders {
+    width:40%;
+    height:100%;
+    float:left;
+}
+
+#selector {
+    width:55%;
+    height:100%;
+    float:right;
 }
 
 .drawer {
@@ -91,4 +103,12 @@
     display:inline-block;
     background-color:black;
     color:white;
+}
+
+.range {
+    float:right;
+}
+
+#font-select {
+    size:5;
 }

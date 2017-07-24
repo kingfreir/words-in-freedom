@@ -18,3 +18,15 @@ exports.upload = function(req,res){
     })
   })
 }
+
+exports.add = function(req,res){
+  console.log(req.body.content)
+  db.drawer.findOneAndUpdate(
+    {name:'Your Words'},
+    {$push:{content:req.body.content}},
+    function(err,doc){
+      if(err) throw err;
+    }
+  )
+  res.json({'status':'success'})
+}

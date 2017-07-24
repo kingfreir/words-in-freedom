@@ -34,6 +34,10 @@ exports.get_drawers = function(callback){
   drawer.find({},callback);
 }
 
+exports.rm_drawers = function(){
+  return drawer.remove({});
+}
+
 var fontSchema = mongoose.Schema({
   family: String,
   src: String,
@@ -51,4 +55,10 @@ exports.get_fonts = function(callback){
   font.find({},callback)
 }
 
+exports.rm_fonts = function(){
+  return font.remove({});
+}
+
 exports.close = function(){mongoose.connection.close()}
+exports.drawer = drawer;
+exports.font = font;

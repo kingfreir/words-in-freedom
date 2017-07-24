@@ -7,6 +7,12 @@ fs.readdir('./files',function(err,files){
         var newDrawer = db.add_drawer(file.split('.')[0]);
         readFile(file,newDrawer)
     })
+
+    db.add_drawer('Your Words').save().then(function(){
+        db.close();
+        console.log('done')
+    })
+
 })
 
 function readFile(file,drawer){

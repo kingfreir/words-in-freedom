@@ -25,8 +25,12 @@ $('#edit').click(function(){
   var el = $('#canvas');
   if(el.attr('contenteditable')==='true'){
     el.attr('contenteditable','false')
+    $(this).text('EDIT')
+    $('.canvas-text').draggable('enable')
   }else{
     el.attr('contenteditable','true')
+    $(this).text('DONE')
+    $('.canvas-text').draggable('disable')
   }
 })
 
@@ -37,6 +41,7 @@ $('#range-val').change(function(){
     var cval = chroma(+val).set('hsv.h',hsvh);
     $('body').css('background',cval.hex());
     $('.sentence').css({'background-color':chromaval.hex(),'color':cval.hex()});
+    $('.reversed').css({'background-color':cval.hex(),'color':chromaval.hex()});
     $('.bordered').css('border-color',chromaval.hex());
     //changing color using jquery ui animate
     $('.title').animate({'color':chromaval.hex()},10);
@@ -57,9 +62,55 @@ $('input[type=range]').on('input', function () {
     $(this).trigger('change');
 });
 
+$('#font-select').change(function(){
+  var font = $(this).val();
+  $('#canvas').css('font-family',font)
+})
+
+$('#show-add').click(function(){
+  var el = $(this).next();
+  if (!el.hasClass('w3-show')) {
+      el.addClass('w3-show');
+  } else {
+      el.removeClass('w3-show')
+  }
+})
+
+$('#add-new').click(function(){
+  var el = $('#new-sentence')
+  var sentence = el.val();
+  var bg = $('body').css('background')
+  var fg = $('#title').css('color');
+
+  $("[id='Your Words']").append('<span class="sentence draggable" style="background-color:'+fg+';color:'+bg+'">'+sentence+'</span>')
+  el.val('');
+
+  $('.draggable').draggable({
+    helper:'clone',
+    zIndex:4,
+    appendTo:'body',
+    containment:$('document')
+  });
+
+  $("[id='Your Words-button']").effect('highlight');
+
+  fetch('/data/add',{
+    method:'POST',
+    body:JSON.stringify({
+      content:sentence
+    }),
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
+  }).then(function(response){
+    if(response.ok) console.log('added')
+  })
+})
+
 $('.category').click(function() {
   var id = $(this).text()
-  var el = $('#'+id)
+  var el = $("[id='"+id+"']")
   if (!el.hasClass('w3-show')) {
       el.addClass('w3-show');
   } else {

@@ -6,6 +6,7 @@
   "dependencies": {
     "async": "^2.5.0",
     "bluebird": "^3.5.0",
+    "body-parser": "^1.17.2",
     "bootstrap": "^3.3.7",
     "chroma-js": "^1.3.4",
     "express": "^4.15.2",
@@ -25,9 +26,12 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "fonts": "node models/font-manager.js",
+    "drawers": "node models/drawer-manager.js",
+    "setup": "npm run fonts && npm run drawers",
     "build": "webpack --config webpack.config.js",
     "start": "node app.js",
-    "first-run": "npm run build & npm run start",
+    "first-run": "npm run build && npm run start",
     "dev": "nodemon app.js"
   },
   "author": "M-ITI, Ricardo Rodrigues",

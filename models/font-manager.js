@@ -17,8 +17,13 @@ fs.readdir('./public/fonts',function(err,files){
 
     font_faces+="@font-face {\n font-family: "+splice[0]+";\n src: url('../fonts/"+file+"') format('"+type+"');\n }\n \n";
     
-    db.add_font(splice[0],'fonts/'+file,type);
+    db.add_font(splice[0],'../fonts/'+file,type)
+      .save(function(err,drawer,n){
+            if(err){ throw err;}
+      });
   })
+
+  setTimeout(function(){db.close()},1000);
 
   var yourPathTotheFile = './public/css/fonts.css';
 
