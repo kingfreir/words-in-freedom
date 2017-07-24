@@ -1,39 +1,39 @@
 @font-face {
   font-family: ZillaSlab-Bold;
-  src: url("fonts/ZillaSlab-Bold.ttf") format("ttf"); }
+  src: url("../fonts/ZillaSlab-Bold.ttf") format("truetype"); }
 
 @font-face {
   font-family: ZillaSlab-BoldItalic;
-  src: url("fonts/ZillaSlab-BoldItalic.ttf") format("ttf"); }
+  src: url("../fonts/ZillaSlab-BoldItalic.ttf") format("truetype"); }
 
 @font-face {
   font-family: ZillaSlab-Italic;
-  src: url("fonts/ZillaSlab-Italic.ttf") format("ttf"); }
+  src: url("../fonts/ZillaSlab-Italic.ttf") format("truetype"); }
 
 @font-face {
   font-family: ZillaSlab-Light;
-  src: url("fonts/ZillaSlab-Light.ttf") format("ttf"); }
+  src: url("../fonts/ZillaSlab-Light.ttf") format("truetype"); }
 
 @font-face {
   font-family: ZillaSlab-LightItalic;
-  src: url("fonts/ZillaSlab-LightItalic.ttf") format("ttf"); }
+  src: url("../fonts/ZillaSlab-LightItalic.ttf") format("truetype"); }
 
 @font-face {
   font-family: ZillaSlab-Medium;
-  src: url("fonts/ZillaSlab-Medium.ttf") format("ttf"); }
+  src: url("../fonts/ZillaSlab-Medium.ttf") format("truetype"); }
 
 @font-face {
   font-family: ZillaSlab-MediumItalic;
-  src: url("fonts/ZillaSlab-MediumItalic.ttf") format("ttf"); }
+  src: url("../fonts/ZillaSlab-MediumItalic.ttf") format("truetype"); }
 
 @font-face {
   font-family: ZillaSlab-Regular;
-  src: url("fonts/ZillaSlab-Regular.ttf") format("ttf"); }
+  src: url("../fonts/ZillaSlab-Regular.ttf") format("truetype"); }
 
 @font-face {
   font-family: ZillaSlab-SemiBold;
-  src: url("fonts/ZillaSlab-SemiBold.ttf") format("ttf"); }
+  src: url("../fonts/ZillaSlab-SemiBold.ttf") format("truetype"); }
 
 @font-face {
   font-family: ZillaSlab-SemiBoldItalic;
-  src: url("fonts/ZillaSlab-SemiBoldItalic.ttf") format("ttf"); }
+  src: url("../fonts/ZillaSlab-SemiBoldItalic.ttf") format("truetype"); }

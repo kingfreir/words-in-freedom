@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
-
+mongoose.Promise = require('bluebird');
+    
 //net start MongoDB to start mongodb server
 mongoose.connect('mongodb://127.0.0.1:27017');
 
@@ -49,3 +50,5 @@ exports.add_font = function(fname,fsrc,fformat){
 exports.get_fonts = function(callback){
   font.find({},callback)
 }
+
+exports.close = function(){mongoose.connection.close()}

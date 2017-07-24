@@ -1,13 +1,23 @@
 var fs = require('fs')
 var sass = require('node-sass');
+var db = require('./mongoose.js');
 
 var font_faces = '';
 
 fs.readdir('./public/fonts',function(err,files){
   files.forEach(function(file){
     var splice = file.split(".");
+    var type;
+
+    switch(splice[1]){
+      case 'ttf': type='truetype';break;
+      case 'otf':type='opentype';break;
+      default: type=splice[1];
+    }
+
+    font_faces+="@font-face {\n font-family: "+splice[0]+";\n src: url('../fonts/"+file+"') format('"+type+"');\n }\n \n";
     
-    font_faces+="@font-face {\n font-family: "+splice[0]+";\n src: url('fonts/"+file+"') format('"+splice[1]+"');\n }\n \n";
+    db.add_font(splice[0],'fonts/'+file,type);
   })
 
   var yourPathTotheFile = './public/css/fonts.css';

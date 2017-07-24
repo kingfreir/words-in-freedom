@@ -1,11 +1,9 @@
-- var id = 0
-each category in categories
-  button(
-    class='w3-button w3-block w3-center category'
-  )= category.name
-  #id(class='w3-container w3-hide content')
-    each sentence in category.content
+#container
+  each category in categories
+    #buttons
       button(
-        class='w3-button w3-left-align w3-block sentence'
-        style='width:100%;white-space:normal'
-      )= sentence
+        class='w3-button w3-block w3-center category'
+      )= category.name
+    div(id= category.name class='w3-hide drawer')
+      each sentence in category.content
+        span(class='sentence draggable')= sentence

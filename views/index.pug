@@ -3,14 +3,18 @@ head
   title= title
   link(rel='stylesheet' type='text/css' href='css/w3.css')
   link(rel='stylesheet' type='text/css' href='css/index.css')
-  
-body(class='w3-display-container')
+  link(rel='stylesheet' type='text/css' href='css/fonts.css')
+  link(rel='stylesheet' type='text/css' href='css/perfect-scrollbar.css')
+body
+  #over-main
+    h1(class='title')= title
+    button#save(class='w3-button colored') SAVE
+    button#edit(class='w3-button colored') EDIT
   #main(class='')
-    h1#title= title
-    #side-panel(class='shared')
+    #side-panel(class='bordered')
       include side-content.pug
-    #main-panel(class='w3-container shared')
+    #main-panel(class='bordered')
       include main-content.pug
-    #bottom-panel(class='w3-container shared')
+    #bottom-panel(class='bordered')
       include bottom-content.pug
   script(type='text/javascript' src='js/bundle.js')
