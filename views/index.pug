@@ -1,27 +1,20 @@
 doctype html
 head
-  title Manifesto Machine
-  link(rel='stylesheet' type='text/css' href='w3.css')
-  link(href='https://fonts.googleapis.com/css?family=Zilla+Slab' rel='stylesheet')
-  link(rel='stylesheet' type='text/css' href='index.css')
-  link(rel="stylesheet" href="https://unpkg.com/simplebar@latest/dist/simplebar.css")
-  script(src="https://unpkg.com/simplebar@latest/dist/simplebar.js")
-  script(type='text/javascript' src='jquery-3.2.1.min.js')
-  script(type='text/javascript' src='chroma.min.js')
-  script(type='text/javascript' src='index.js')
-body(class='w3-display-container')
-  #edit(class='w3-modal')
-    div(class='w3-modal-content')
-      #edit-container(class='w3-container')
-        span(
-          onclick="document.getElementById('edit').style.display='none'"
-          class='w3-button w3-display-topright'
-          ) &times;
+  title= title
+  link(rel='stylesheet' type='text/css' href='css/w3.css')
+  link(rel='stylesheet' type='text/css' href='css/index.css')
+  link(rel='stylesheet' type='text/css' href='css/fonts.css')
+  link(rel='stylesheet' type='text/css' href='css/perfect-scrollbar.css')
+body
+  #over-main
+    h1(class='title')= title
+    button#save(class='w3-button colored') SAVE
+    button#edit(class='w3-button colored') EDIT
   #main(class='')
-    h1#title Manifesto Machine
-    #side-panel(class='shared' data-simplebar)
+    #side-panel(class='bordered')
       include side-content.pug
-    #main-panel(class='w3-container shared')
+    #main-panel(class='bordered')
       include main-content.pug
-    #bottom-panel(class='w3-container shared')
+    #bottom-panel(class='bordered')
       include bottom-content.pug
+  script(type='text/javascript' src='js/bundle.js')

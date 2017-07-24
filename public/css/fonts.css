@@ -1,0 +1,135 @@
+@font-face {
+  font-family: Alfphabet-I;
+  src: url("../fonts/Alfphabet-I.otf") format("opentype"); }
+
+@font-face {
+  font-family: Alfphabet-III;
+  src: url("../fonts/Alfphabet-III.otf") format("opentype"); }
+
+@font-face {
+  font-family: Alfphabet-IV;
+  src: url("../fonts/Alfphabet-IV.ttf") format("truetype"); }
+
+@font-face {
+  font-family: Belgika-16th;
+  src: url("../fonts/Belgika-16th.otf") format("opentype"); }
+
+@font-face {
+  font-family: Belgika-40th;
+  src: url("../fonts/Belgika-40th.otf") format("opentype"); }
+
+@font-face {
+  font-family: Belgika-5th;
+  src: url("../fonts/Belgika-5th.otf") format("opentype"); }
+
+@font-face {
+  font-family: Belgika-8th;
+  src: url("../fonts/Belgika-8th.otf") format("opentype"); }
+
+@font-face {
+  font-family: CertegeskaBase;
+  src: url("../fonts/CertegeskaBase.ttf") format("truetype"); }
+
+@font-face {
+  font-family: CertegeskaDemi;
+  src: url("../fonts/CertegeskaDemi.ttf") format("truetype"); }
+
+@font-face {
+  font-family: CertegeskaStraight;
+  src: url("../fonts/CertegeskaStraight.ttf") format("truetype"); }
+
+@font-face {
+  font-family: Cimatics-Base;
+  src: url("../fonts/Cimatics-Base.ttf") format("truetype"); }
+
+@font-face {
+  font-family: Cimatics-Dust;
+  src: url("../fonts/Cimatics-Dust.ttf") format("truetype"); }
+
+@font-face {
+  font-family: Cimatics-Noise;
+  src: url("../fonts/Cimatics-Noise.ttf") format("truetype"); }
+
+@font-face {
+  font-family: Cimatics-Trash;
+  src: url("../fonts/Cimatics-Trash.ttf") format("truetype"); }
+
+@font-face {
+  font-family: CimaticsFull-Mono;
+  src: url("../fonts/CimaticsFull-Mono.ttf") format("truetype"); }
+
+@font-face {
+  font-family: CimaticsFull-Regular;
+  src: url("../fonts/CimaticsFull-Regular.ttf") format("truetype"); }
+
+@font-face {
+  font-family: Cimatics_Partners;
+  src: url("../fonts/Cimatics_Partners.ttf") format("truetype"); }
+
+@font-face {
+  font-family: CowboyHenk;
+  src: url("../fonts/CowboyHenk.ttf") format("truetype"); }
+
+@font-face {
+  font-family: DingbatsLiberationFestRegular_01;
+  src: url("../fonts/DingbatsLiberationFestRegular_01.ttf") format("truetype"); }
+
+@font-face {
+  font-family: Libertinage;
+  src: url("../fonts/Libertinage.ttf") format("truetype"); }
+
+@font-face {
+  font-family: Mill;
+  src: url("../fonts/Mill.otf") format("opentype"); }
+
+@font-face {
+  font-family: NotCourierSans-Bold;
+  src: url("../fonts/NotCourierSans-Bold.otf") format("opentype"); }
+
+@font-face {
+  font-family: NotCourierSans;
+  src: url("../fonts/NotCourierSans.otf") format("opentype"); }
+
+@font-face {
+  font-family: PhiliItaRus;
+  src: url("../fonts/PhiliItaRus.ttf") format("truetype"); }
+
+@font-face {
+  font-family: PhiliItaRusExt;
+  src: url("../fonts/PhiliItaRusExt.ttf") format("truetype"); }
+
+@font-face {
+  font-family: Reglo-Bold;
+  src: url("../fonts/Reglo-Bold.ttf") format("truetype"); }
+
+@font-face {
+  font-family: SansGuiltDB;
+  src: url("../fonts/SansGuiltDB.otf") format("opentype"); }
+
+@font-face {
+  font-family: SansGuiltLB;
+  src: url("../fonts/SansGuiltLB.otf") format("opentype"); }
+
+@font-face {
+  font-family: SansGuiltMB;
+  src: url("../fonts/SansGuiltMB.otf") format("opentype"); }
+
+@font-face {
+  font-family: SansGuiltWafer;
+  src: url("../fonts/SansGuiltWafer.otf") format("opentype"); }
+
+@font-face {
+  font-family: VJLibertineFullVJWhite;
+  src: url("../fonts/VJLibertineFullVJWhite.ttf") format("truetype"); }
+
+@font-face {
+  font-family: WorkAvec-Medium;
+  src: url("../fonts/WorkAvec-Medium.ttf") format("truetype"); }
+
+@font-face {
+  font-family: WorkAvec-SemiBold;
+  src: url("../fonts/WorkAvec-SemiBold.ttf") format("truetype"); }
+
+@font-face {
+  font-family: ZillaSlab-SemiBold;
+  src: url("../fonts/ZillaSlab-SemiBold.ttf") format("truetype"); }
