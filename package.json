@@ -1,15 +1,22 @@
 {
   "name": "words-in-freedom",
-  "version": "1.0.0",
-  "description": "MANIFESTO MACHINE",
-  "main": "index.js",
+  "version": "0.1.0",
+  "private": true,
+  "author": "M-ITI, Ricardo Rodrigues",
+  "license": "ISC",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
   "dependencies": {
+    "react": "^16.3.1",
+    "react-dom": "^16.3.1",
+    "react-scripts": "1.1.4"
   },
   "devDependencies": {
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "M-ITI, Ricardo Rodrigues",
-  "license": "ISC"
+    "eslint": "^4.19.1",
+    "eslint-plugin-react": "^7.7.0"
+  }
 }
