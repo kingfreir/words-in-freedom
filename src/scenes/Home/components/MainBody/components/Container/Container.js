@@ -2,14 +2,14 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './Container.css'
 
-const Container = ({ children }) => (
+const Container = (component) => (
   <div className={styles.container}>
-    {children}
+    {component}
   </div>
 )
 
 Container.propTypes = {
-  children: PropTypes.node.isRequired
+  component: PropTypes.node.isRequired
 }
 
 export default Container

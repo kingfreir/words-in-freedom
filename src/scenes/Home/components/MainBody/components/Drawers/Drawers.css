@@ -1,0 +1,8 @@
+.drawers {
+    flex: 1;
+    height: 100%;
+    width: 100%;
+    border-width: 4px;
+    border-color: blue;
+    margin: 4px;
+}

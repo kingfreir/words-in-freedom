@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
 import Container from '../Container/Container'
+import styles from './Controls.css'
 
 class Controls extends Component {
   render() {
     return (
-    <Container>
-      <div />
-    </Container>
+      <div className={styles.controls}/>
     )
   }
 }

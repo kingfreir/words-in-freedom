@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import Container from '../Container/Container'
+import styles from './Canvas.css'
+
 class Canvas extends Component {
   render() {
     return (
-      <Container>
-        <div />
-      </Container>
+      <div className={styles.canvas}/>
     )
   }
 }

@@ -1,11 +1,14 @@
 .body-container {
-  flex-direction: 'row';
+  display: flex;
+  flex-direction: row;
 }
 
 .body-left {
-  flex: 1;
+  width: 116px;
+  height: 600px;
 }
 
 .body-right {
-  flex: 4;
+  width: 716px;
+  height: 600px;
 }
