@@ -1,0 +1,9 @@
+.main-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.main-header h1 {
+  color: red;
+}

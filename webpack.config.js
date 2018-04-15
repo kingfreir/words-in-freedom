@@ -42,7 +42,7 @@ module.exports = {
             options: {
               modules: true,
               importLoaders: 1,
-              localIdentName: '[name]_[local]_[hash:base64]',
+              localIdentName: '[name]_[local]_[hash:base64]', // Edit this to simplify direct ref
               sourceMap: true,
               minimize: true
             }

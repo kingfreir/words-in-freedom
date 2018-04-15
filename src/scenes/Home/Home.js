@@ -1,16 +1,15 @@
 import React, { Component } from 'react'
 import styles from './Home.css'
 
+import MainHeader from './components/MainHeader/MainHeader'
+import MainBody from './components/MainBody/MainBody'
+
 class Home extends Component {
   render() {
     return (
       <div className={styles.home}>
-        <header className="Home-header">
-          <h1 className="Home-title">Welcome to React</h1>
-        </header>
-        <p className="Home-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <MainHeader />
+        <MainBody />
       </div>
     )
   }
