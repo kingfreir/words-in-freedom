@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
+import styles from './Home.css'
 
 class Home extends Component {
   render() {
     return (
-      <div className="Home">
+      <div className={styles.home}>
         <header className="Home-header">
           <h1 className="Home-title">Welcome to React</h1>
         </header>
