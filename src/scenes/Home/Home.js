@@ -7,7 +7,7 @@ import MainBody from './components/MainBody/MainBody'
 class Home extends Component {
   render() {
     return (
-      <div className={styles.home}>
+      <div className={[styles.home]}>
         <MainHeader />
         <MainBody />
       </div>

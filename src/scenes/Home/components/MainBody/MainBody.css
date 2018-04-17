@@ -1,14 +1,19 @@
 .body-container {
   display: flex;
   flex-direction: row;
+  height: 700px;
+  width: 900px;
 }
 
 .body-left {
-  width: 116px;
-  height: 600px;
+  display: flex;
+  flex: 2;
+  margin-right: 4px;
 }
 
 .body-right {
-  width: 716px;
-  height: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 5;
 }

@@ -1,9 +1,11 @@
 import React from 'react'
 import styles from './MainHeader.css'
 
+import Title from './components/Title/Title'
+
 const MainHeader = () => (
   <div className={styles['main-header']}>
-    <h1>Manifesto Machine</h1>
+    <Title title="Manifesto Machine" />
   </div>
 )
 

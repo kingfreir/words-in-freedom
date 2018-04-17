@@ -1,8 +1,5 @@
 .canvas {
     flex: 3;
-    height: 100%;
-    width: 70%;
-    border-width: 4px;
-    border-color: blue;
-    margin: 4px;
+    border: solid black;
+    margin-bottom: 4px;
 }
