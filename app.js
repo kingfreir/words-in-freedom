@@ -10,6 +10,6 @@ app.use(express.static(__dirname + "/public"));
 app.use('/',require('./routes/index.js'))
 app.use('/data',require('./routes/data.js'));
 
-http.listen(3030, function(){
+http.listen(8080, function(){
   console.log('listening on 3030');
 });
