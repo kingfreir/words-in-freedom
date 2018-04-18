@@ -1,6 +1,6 @@
 var fs = require('fs')
 var sass = require('node-sass');
-var db = require('./mongoose.js');
+var db = require('./lowdb.js');
 
 var font_faces = '';
 
@@ -17,13 +17,9 @@ fs.readdir('./public/fonts',function(err,files){
 
     font_faces+="@font-face {\n font-family: "+splice[0]+";\n src: url('../fonts/"+file+"') format('"+type+"');\n }\n \n";
     
-    db.add_font(splice[0],'../fonts/'+file,type)
-      .save(function(err,drawer,n){
-            if(err){ throw err;}
-      });
+    //lowdb replace
+    db.add_font({ family:splice[0], src: '../fonts/'+file, format: type })
   })
-
-  setTimeout(function(){db.close()},1000);
 
   var yourPathTotheFile = './public/css/fonts.css';
 

@@ -1,18 +1,13 @@
-var db = require('./mongoose.js');
+var db = require('./lowdb.js');
 var fs = require('fs')
 var readline = require('readline');
 
 fs.readdir('./files',function(err,files){
     files.forEach(function(file){
-        var newDrawer = db.add_drawer(file.split('.')[0]);
-        readFile(file,newDrawer)
+        const dbName = file.split('.')[0]
+        db.add_drawer(dbName)
+        readFile(file,dbName)
     })
-
-    db.add_drawer('Your Words').save().then(function(){
-        db.close();
-        console.log('done')
-    })
-
 })
 
 function readFile(file,drawer){
@@ -22,14 +17,8 @@ function readFile(file,drawer){
  
     rl.on('line', function (line) {
         //do something with line
-        drawer.add(line);
+        db.add_line(drawer,line)
     });
-
-    rl.on('close',function(){
-        drawer.save(function(err,drawer,n){
-            if(err){ throw err;}
-        });
-    })
 }
 
 exports.readFile = readFile;

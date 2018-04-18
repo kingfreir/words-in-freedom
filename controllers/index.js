@@ -1,4 +1,4 @@
-var db = require('../models/mongoose.js')
+var db = require('../models/lowdb.js')
 var async = require('async');
 
 exports.default = function(req,res){

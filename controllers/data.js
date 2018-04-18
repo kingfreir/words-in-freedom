@@ -1,4 +1,4 @@
-var db = require('../models/mongoose.js')
+var db = require('../models/lowdb.js')
 var formidable = require('formidable')
 var fs = require('fs')
 
@@ -21,12 +21,6 @@ exports.upload = function(req,res){
 
 exports.add = function(req,res){
   console.log(req.body.content)
-  db.drawer.findOneAndUpdate(
-    {name:'Your Words'},
-    {$push:{content:req.body.content}},
-    function(err,doc){
-      if(err) throw err;
-    }
-  )
+  db.add_line('Your Words', req.body.content)
   res.json({'status':'success'})
 }
