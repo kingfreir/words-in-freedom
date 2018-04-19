@@ -28,6 +28,16 @@
     class='range'
   )
   br
+  label(class='colored') Rotation
+  input#range-rotation(
+    type='range'
+    min=0
+    max=180
+    value=0
+    step=1
+    class='range'
+  )
+  br
 #selector
   select#font-select(class='w3-select reversed')
     each font in fonts

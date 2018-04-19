@@ -30,9 +30,10 @@
     "fonts": "node models/font-manager.js",
     "drawers": "node models/drawer-manager.js",
     "setup": "npm run fonts && npm run drawers",
-    "build": "npm run setup && webpack --config webpack.config.js",
+    "build": "webpack --config webpack.config.js",
     "serve": "node app.js",
-    "start": "npm run build && npm run serve",
+    "clean": "node scripts/clean.js",
+    "start": "npm run setup && npm run build && npm run serve",
     "dev": "nodemon app.js"
   },
   "author": "M-ITI, Ricardo Rodrigues",

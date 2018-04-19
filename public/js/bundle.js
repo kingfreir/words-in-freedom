@@ -11022,13 +11022,23 @@ var h2c = __webpack_require__(26);
 var container = document.getElementById('container');
 ps.initialize(container);
 
+// block enter key
+$(document).ready(function() {
+  $(window).keydown(function(event){
+    if(event.keyCode == 13) {
+      event.preventDefault();
+      return false;
+    }
+  });
+});
+
 $('#save').click(function(){
   var color = $('body').css('background-color');
   h2c($('#main-panel'),{
     background:color,
     onrendered:function(canvas){
        var a = document.createElement('a');
-        a.href = canvas.toDataURL("image/png").replace("image/pngg", "image/octet-stream");
+        a.href = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
         a.download = 'Manifesto.png';
         a.click();
     }
@@ -11044,9 +11054,14 @@ $('#edit').click(function(){
   }else{
     el.attr('contenteditable','true')
     $(this).text('DONE')
+
     $('.canvas-text').draggable('disable')
   }
 })
+
+$.fn.cleanCanvas = function() {
+
+}
 
 $('#range-val').change(function(){
     var val = $(this).val();
@@ -11066,6 +11081,20 @@ $('#range-val').change(function(){
 
 $('#range-font').change(function(){
   $('#main-panel').css({'font-size':$(this).val()+'em'});
+})
+
+$('#range-rotation').change(function(){
+  $('.selected').css({
+    '-webkit-transform':'rotate('+$(this).val()+'deg)',
+    '-moz-transform':'rotate('+$(this).val()+'deg)',
+    '-ms-transform':'rotate('+$(this).val()+'deg)',
+    'transform':'rotate('+$(this).val()+'deg)'
+  });
+})
+
+$('#canvas > span').click(function() {
+  $('#canvas > span.selected').removeClass('selected')
+  $(this).addClass('selected')
 })
 
 $('#range-height').change(function(){
@@ -11145,7 +11174,7 @@ $('#canvas').droppable({
   drop:function(event,ui){
     var text = $(ui.draggable).text();
     var color = $('.colored').css('color');
-    $(this).append('<span class="colored canvas-text w3-hover-grayscale" style="color:'+color+'">'+text+' </span>');
+    $(this).append('<span class="colored canvas-text w3-hover-grayscale" style="display:block;color:'+color+'">'+text+' </span>');
     $('.canvas-text').draggable({
       
     });

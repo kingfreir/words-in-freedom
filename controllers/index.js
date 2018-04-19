@@ -1,5 +1,6 @@
 var db = require('../models/lowdb.js')
 var async = require('async');
+var config = require('../config.json')
 
 exports.default = function(req,res){
   async.parallel({
@@ -10,7 +11,8 @@ exports.default = function(req,res){
     res.render('index',{
       title:'Manifesto Machine',
       categories:result.categories,
-      fonts:result.fonts
+      fonts:result.fonts,
+      useYourWords: config['use-your-words'],
     })
   })
 }

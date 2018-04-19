@@ -1,10 +1,19 @@
 const low = require('lowdb')
 const FileSync = require('lowdb/adapters/FileSync')
+const config = require('../config.json')
 
 const adapter = new FileSync('db.json')
 const db = low(adapter)
 
-db.defaults({ drawers: {}, fonts: []}).write()
+db.defaults({ drawers: {
+  ...config['use-your-words'] ?
+    {
+      'Your Words': {
+        name: 'Your Words',
+        content: []
+      }
+    } : {}
+  }, fonts: []}).write()
 
 exports.add_drawer = function(drawer) {
   db.get('drawers').set(drawer, { name: drawer, content: []}).write()
@@ -19,7 +28,6 @@ exports.get_drawer = function(drawer) {
 }
 
 exports.get_drawers = function(cb) {
-  console.log(db.get('drawers').values().value())
   cb(null, db.get('drawers').values().value())
 }
 
