@@ -33,7 +33,7 @@
     "build": "webpack --config webpack.config.js",
     "serve": "node app.js",
     "clean": "node scripts/clean.js",
-    "start": "npm run setup && npm run build && npm run serve",
+    "start": "npm run clean && npm run setup && npm run build && npm run serve",
     "dev": "nodemon app.js"
   },
   "author": "M-ITI, Ricardo Rodrigues",
