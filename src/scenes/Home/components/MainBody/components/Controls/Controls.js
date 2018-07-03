@@ -5,14 +5,17 @@ import { colorActions } from '../../../../../../services/actions'
 import styles from './Controls.css'
 
 class Controls extends Component {
-  render() {
-    const {
-      changeColor
-    } = this.props
 
+  changeColor() {
+    const { changeColor } = this.props
+
+    changeColor('white')
+  }
+
+  render() {
     return (
       <div className={`${styles.controls} color`}>
-        <button onClick={() => changeColor('white')}/>
+        <button onClick={this.changeColor('white')}/>
       </div>
     )
   }
