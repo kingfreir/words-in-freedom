@@ -1,15 +1,12 @@
 import React, { Component } from 'react'
 import styles from './Home.css'
 
-import MainHeader from './components/MainHeader/MainHeader'
-import MainBody from './components/MainBody/MainBody'
-
 class Home extends Component {
   render() {
     return (
       <div className={[styles.home]}>
-        <MainHeader />
-        <MainBody />
+        <div style={{ flex: 0.2, backgroundColor: 'blue' }}/>
+        <div style={{ flex: 0.8, backgroundColor: 'grey'}} />
       </div>
     )
   }
