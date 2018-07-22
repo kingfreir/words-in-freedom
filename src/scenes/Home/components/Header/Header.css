@@ -1,0 +1,10 @@
+.header {
+  margin-left: 0;
+  flex: 0.80;
+  justify-content: flex-start;
+  flex-direction: row;
+}
+
+.header h1 {
+  margin-bottom: 0;
+}
