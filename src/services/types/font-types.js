@@ -1,1 +1,1 @@
-export const GET_FONTS = 'GET_FONTS'
+export const CHANGE_FONT = 'CHANGE_FONT'

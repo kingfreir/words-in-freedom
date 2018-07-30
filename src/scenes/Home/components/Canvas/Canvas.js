@@ -1,13 +1,20 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import html2canvas from 'html2canvas'
+import { } from 'react-dnd'
 import themeStyles from '../../../../theme/styles'
 
 import Sentence from './components/Sentence/Sentence'
 
 class Canvas extends Component {
   static propTypes = {
-    color: PropTypes.shape({}).isRequired,
+    color: PropTypes.shape({
+      background: PropTypes.string.isRequired,
+    }).isRequired,
+    font: PropTypes.string.isRequired,
+    requestDownload: PropTypes.bool.isRequired,
+    onDownloadComplete: PropTypes.func.isRequired,
   }
 
   constructor(props) {
@@ -20,30 +27,52 @@ class Canvas extends Component {
     this.canvas = React.createRef()
   }
 
-  setReference
+  componentWillReceiveProps({ requestDownload }) {
+    if (requestDownload && requestDownload !== this.props.requestDownload) {
+      this.handleCanvas()
+    }
+  }
+
   onDrop = (e) => {
     e.persist()
-    this.setState(state => ({
-      content: [...state.content, {
-        sentence: e.dataTransfer.getData("sentence"),
-        x: e.pageX - this.canvas.current.offsetLeft,
-        y: e.pageY - this.canvas.current.offsetTop,
-      }]
-    }))
+    const sentence = e.dataTransfer.getData("sentence")
+    if (sentence) {
+      this.setState(state => ({
+        content: [...state.content, {
+          sentence,
+          x: e.pageX - this.canvas.current.offsetLeft,
+          y: e.pageY - this.canvas.current.offsetTop,
+        }]
+      }))
+    }
   }
 
   onDragOver = (e) => {
     e.preventDefault()
   }
 
+  handleCanvas = () => {
+    const { color, onDownloadComplete } = this.props
+
+    html2canvas(this.canvas.current, { backgroundColor: color.background, logging: false })
+      .then(result => {
+        const a = document.createElement('a')
+        a.href = result.toDataURL("image/png").replace("image/png", "image/octet-stream")
+        onDownloadComplete(a.href)
+        a.download = 'Manifesto.png'
+        a.click()
+      })
+  }
+
   render() {
-    const { color } = this.props
+    const { color, font } = this.props
     return (
       <div ref={this.canvas} droppable="true" onDrop={this.onDrop} onDragOver={this.onDragOver} style={{ ...styles.container, ...themeStyles.bordered(color)}}>
         {this.state.content.map((item, index) => (
           <Sentence
             key={`${item.sentence}-${index}`}
             sentence={item.sentence}
+            font={font}
             color={color}
             initialX={item.x}
             initialY={item.y}
@@ -62,5 +91,9 @@ const styles = {
   }
 }
 
-const mapStateToProps = ({ color }) => ({ color })
+const mapStateToProps = ({ color, fonts }) => ({
+  color,
+  font: fonts.selected,
+})
+
 export default connect(mapStateToProps)(Canvas)

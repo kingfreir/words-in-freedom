@@ -1,15 +1,16 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import style from './Collapse.css'
+import style from './DrawerItem.css'
 import { themeStyles } from '../../../../../../theme'
 
-class Collapse extends Component {
+class DrawerItem extends Component {
   static propTypes = {
     item: PropTypes.shape({
       title: PropTypes.string,
       content: PropTypes.arrayOf(PropTypes.string)
     }).isRequired,
-    color: PropTypes.shape({}).isRequired
+    color: PropTypes.shape({}).isRequired,
+    font: PropTypes.string.isRequired,
   }
 
   constructor(props) {
@@ -24,17 +25,24 @@ class Collapse extends Component {
     ev.dataTransfer.setData("sentence", sentence)
   }
 
+  onToggle = () => {
+    this.setState(state => ({
+      isOpen: !state.isOpen,
+    }))
+  }
+
   render() {
     const {
       item,
-      color
+      color,
+      font
     } = this.props
     return (
-      <div style={{ marginBottom: '4px' }}>
+      <div style={styles.container}>
         <button
           className={style.button}
           style={{ backgroundColor: color.foreground, color: color.background }}
-          onClick={() => this.setState(state => ({ isOpen: !state.isOpen}))}>
+          onClick={() => this.onToggle()}>
             {item.name}
         </button>
         <div style={{ display: this.state.isOpen ? 'block' : 'none', ...themeStyles.bordered(color), ...styles.content }}>
@@ -43,7 +51,7 @@ class Collapse extends Component {
               key={sentence}
               draggable="true"
               onDragStart={(e) => this.onDragStart(e, sentence)}
-              style={styles.sentence(color)}
+              style={styles.sentence(color, font)}
             >
               {sentence}
             </span>
@@ -55,19 +63,25 @@ class Collapse extends Component {
 }
 
 const styles = {
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    marginBottom: '4px',
+  },
   content: {
     margin: 0,
     padding: '4px',
     overflowY: 'scroll',
+    height: '300px'
   },
-  sentence: color => ({
+  sentence: (color, font) => ({
     backgroundColor: color.foreground,
     color: color.background,
     padding: '2px',
     margin: '4px',
     display: 'inline-block',
-    fontFamily: 'Alfphabet-I'
+    fontFamily: font,
   }),
 }
 
-export default Collapse
+export default DrawerItem

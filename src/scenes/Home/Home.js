@@ -17,10 +17,29 @@ class Home extends Component {
     getDrawers: PropTypes.func.isRequired
   }
 
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      downloadRequested: false,
+    }
+  }
+
   componentDidMount() {
     this.props.getDrawers()
   }
   
+  handleDownload = () => {
+    this.setState({ downloadRequested: true })
+  }
+
+  // Can receive result image as param for post-processing
+  handleDownloadComplete = () => {
+    this.setState({
+      downloadRequested: false,
+    })
+  }
+
   render() {
     const { color, drawers } = this.props
 
@@ -32,17 +51,22 @@ class Home extends Component {
           </style>
         </Helmet>
         <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
-          <Header />
+          <Header
+            onDownload={this.handleDownload}
+          />
         </div>
         <div style={{ display: 'flex', flex: 1, flexDirection: 'row', justifyContent: 'center' }} >
           <div style={{ display: 'flex', flex: 0.20, flexDirection: 'column'}}>
             <Drawers data={Object.values(drawers)}/>
-            <Controls >
+            <Controls ref={this.canvas} >
               <Controls.Fonts />
             </Controls>
           </div>
           <div style={{ display: 'flex', flex: 0.6, flexDirection: 'column'}}>
-            <Canvas />
+            <Canvas
+              requestDownload={this.state.downloadRequested}
+              onDownloadComplete={this.handleDownloadComplete}
+            />
             <Controls bordered >
               <Controls.Color />
             </Controls>

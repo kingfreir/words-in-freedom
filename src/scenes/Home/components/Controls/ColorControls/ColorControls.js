@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { ChromePicker } from 'react-color'
 import invertColor from 'invert-color'
 import { colorActions } from '../../../../../services/actions'
+import ColorPicker from './ColorPicker/ColorPicker'
 
 class ColorControls extends Component {
   static propTypes = {
@@ -20,12 +20,21 @@ class ColorControls extends Component {
     })
   }
 
+  // Random Color
+
+  // Flip Colors
+
+  // Set background/foreground
+  
   render() {
     const {
       color
     } = this.props
     return (
-      <ChromePicker color={color.background} disableAlpha onChange={this.onColorChange}/>
+      <ColorPicker
+        color={color.background}
+        onChange={this.onColorChange}
+      />
     )
   }
 }

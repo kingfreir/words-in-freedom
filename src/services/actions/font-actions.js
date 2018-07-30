@@ -1,7 +1,6 @@
-import { GET_FONTS } from '../types/font-types'
-import db from '../db/db.json'
+import { CHANGE_FONT } from '../types/font-types'
 
-export const getDrawers = () => ({
-  type: GET_FONTS,
-  payload: db.fonts,
+export const changeFont = font => ({
+  type: CHANGE_FONT,
+  payload: font,
 })

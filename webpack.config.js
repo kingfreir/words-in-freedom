@@ -1,6 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
 const HtmlWebPackPlugin = require('html-webpack-plugin')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = {
   entry: [
@@ -16,6 +17,11 @@ module.exports = {
     contentBase: './build',
     publicPath: '/',
     hot: true
+  },
+  optimization: {
+    minimizer: [
+      new UglifyJsPlugin()
+    ]
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
@@ -33,7 +39,7 @@ module.exports = {
           loader: 'babel-loader',
         }
       }, {
-        test: /\.(ttf|otf|woff|woff2)$/,
+        test: /\.(ttf|otf|woff|woff2|svg)$/,
         use: {
           loader: "file-loader",
         },

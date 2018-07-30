@@ -7,6 +7,7 @@ class Sentence extends Component {
     initialY: PropTypes.number.isRequired,
     color: PropTypes.shape({}).isRequired,
     sentence: PropTypes.string.isRequired,
+    font: PropTypes.string.isRequired,
   }
 
   constructor(props) {
@@ -25,16 +26,18 @@ class Sentence extends Component {
       y: state.y + e.nativeEvent.offsetY,
     }))
   }
+
   render() {
     const {
       sentence,
       color,
+      font,
     } = this.props
 
     const { x, y } = this.state
     return (
       <span
-        style={{...styles.sentence(color), ...{ top: y, left: x }}}
+        style={{...styles.sentence(color,font), ...{ top: y, left: x }}}
         draggable
         onDrag={this.onDrag}
       >
@@ -45,9 +48,10 @@ class Sentence extends Component {
 }
 
 const styles = {
-  sentence: color => ({
+  sentence: (color, font) => ({
     position: 'absolute',
     color: color.foreground,
+    fontFamily: font,
   })
 }
 

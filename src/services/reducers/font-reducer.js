@@ -1,16 +1,17 @@
-import { GET_FONTS } from '../types/font-types'
+import { CHANGE_FONT } from '../types/font-types'
+import db from '../db/db.json'
 
 const initialState = {
-  fonts: [],
-  selected: '',
+  fonts: db.fonts,
+  selected: db.fonts[0].family,
 }
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case GET_FONTS:
+    case CHANGE_FONT:
       return {
-        fonts: action.payload,
-        selected: action.payload[0].family
+        ...state,
+        selected: action.payload,
       }
     default:
       return state
