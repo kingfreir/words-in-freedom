@@ -11,7 +11,12 @@ const IconButton = ({
   onPress,
   style,
 }) => (
-  <ReactSVG path={icons[type] || icons.done} className={css.iconButton} svgStyle={{ fill: color.foreground, ...style } } onClick={onPress}/>
+  <ReactSVG
+    path={icons[type] || icons.done}
+    className={css.iconButton}
+    svgStyle={{ fill: color.foreground, cursor: 'pointer', ...style } }
+    onClick={onPress}
+  />
 )
 
 IconButton.propTypes = {

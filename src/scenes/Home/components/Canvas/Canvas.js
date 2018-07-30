@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import html2canvas from 'html2canvas'
-import { } from 'react-dnd'
 import themeStyles from '../../../../theme/styles'
 
 import Sentence from './components/Sentence/Sentence'
@@ -37,11 +36,12 @@ class Canvas extends Component {
     e.persist()
     const sentence = e.dataTransfer.getData("sentence")
     if (sentence) {
+      console.log(e, this.canvas)
       this.setState(state => ({
         content: [...state.content, {
           sentence,
-          x: e.pageX - this.canvas.current.offsetLeft,
-          y: e.pageY - this.canvas.current.offsetTop,
+          x: e.nativeEvent.offsetX,
+          y: e.nativeEvent.offsetY,
         }]
       }))
     }
@@ -76,6 +76,7 @@ class Canvas extends Component {
             color={color}
             initialX={item.x}
             initialY={item.y}
+            parent={this.canvas.current}
           />
         ))}
       </div>

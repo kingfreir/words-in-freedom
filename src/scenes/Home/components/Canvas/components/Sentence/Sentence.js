@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import Draggable from 'react-draggable'
 
 class Sentence extends Component {
   static propTypes = {
@@ -10,39 +11,28 @@ class Sentence extends Component {
     font: PropTypes.string.isRequired,
   }
 
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      x: props.initialX,
-      y: props.initialY,
-    }
-  }
-
-  onDrag = e => {
-    e.persist()
-    this.setState(state => ({
-      x: state.x + e.nativeEvent.offsetX,
-      y: state.y + e.nativeEvent.offsetY,
-    }))
-  }
-
   render() {
     const {
       sentence,
       color,
       font,
+      initialX,
+      initialY
     } = this.props
 
-    const { x, y } = this.state
     return (
-      <span
-        style={{...styles.sentence(color,font), ...{ top: y, left: x }}}
-        draggable
-        onDrag={this.onDrag}
+      <Draggable
+        axis="both"
+        defaultPosition={{
+          x: initialX,
+          y: initialY,
+        }}
+        position={null}
       >
-        {sentence}
-      </span>
+        <span style={{...styles.sentence(color,font)}}>
+          {sentence}
+        </span>
+      </Draggable>
     )
   }
 }
@@ -50,8 +40,10 @@ class Sentence extends Component {
 const styles = {
   sentence: (color, font) => ({
     position: 'absolute',
+    display: 'inline-block',
     color: color.foreground,
     fontFamily: font,
+    cursor: 'pointer',
   })
 }
 

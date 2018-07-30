@@ -5,9 +5,11 @@ import { Saturation, Hue } from 'react-color/lib/components/common'
 class ColoPicker extends Component {
   render() {
     return (
-      <div style={styles.container}>
-        <Saturation {...this.props} />
-        <div style={{ position: 'relative', height: '10%'}}>
+      <div>
+        <div style={styles.container}>
+          <Saturation {...this.props} />
+        </div>
+        <div style={{ position: 'relative', height: '10px', width: '100px'}}>
           <Hue {...this.props}/>
         </div>
       </div>

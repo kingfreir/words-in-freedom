@@ -81,6 +81,7 @@ const styles = {
     margin: '4px',
     display: 'inline-block',
     fontFamily: font,
+    cursor: 'pointer'
   }),
 }
 
