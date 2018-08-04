@@ -8,7 +8,11 @@ class Sentence extends Component {
     initialY: PropTypes.number.isRequired,
     color: PropTypes.shape({}).isRequired,
     sentence: PropTypes.string.isRequired,
-    font: PropTypes.string.isRequired,
+    font: PropTypes.shape({
+      family: PropTypes.string.isRequired,
+      size: PropTypes.string.isRequired,
+      height: PropTypes.string.isRequired,
+    }).isRequired,
   }
 
   render() {
@@ -29,9 +33,11 @@ class Sentence extends Component {
         }}
         position={null}
       >
-        <span style={{...styles.sentence(color,font)}}>
-          {sentence}
-        </span>
+        <div>
+          <span className="sentence" style={{...styles.sentence(color,font)}}>
+            {sentence}
+          </span>
+        </div>
       </Draggable>
     )
   }
@@ -42,8 +48,11 @@ const styles = {
     position: 'absolute',
     display: 'inline-block',
     color: color.foreground,
-    fontFamily: font,
+    fontFamily: font.family,
+    fontSize: font.size + 'px',
+    transform: `rotate(${font.rotation}deg)`,
     cursor: 'pointer',
+    whiteSpace: 'pre',
   })
 }
 

@@ -11,7 +11,10 @@ class Canvas extends Component {
     color: PropTypes.shape({
       background: PropTypes.string.isRequired,
     }).isRequired,
-    font: PropTypes.string.isRequired,
+    font: PropTypes.shape({
+      family: PropTypes.string.isRequired,
+      size: PropTypes.string.isRequired,
+    }).isRequired,
     requestDownload: PropTypes.bool.isRequired,
     onDownloadComplete: PropTypes.func.isRequired,
   }
@@ -94,7 +97,11 @@ const styles = {
 
 const mapStateToProps = ({ color, fonts }) => ({
   color,
-  font: fonts.selected,
+  font: {
+    family: fonts.selected,
+    size: fonts.size,
+    rotation: fonts.rotation,
+  },
 })
 
 export default connect(mapStateToProps)(Canvas)

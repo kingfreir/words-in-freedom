@@ -47,7 +47,31 @@ class Home extends Component {
       <div className={[styles.home]}>
         <Helmet>
           <style type='text/css'>
-            {`body { background-color: ${color.background}; }`}
+            {`
+              body {
+                background-color: ${color.background};
+              }
+              .slider {
+                -webkit-appearance: none;
+                appearance: none;
+                background-color: ${color.foreground};
+              }
+              .slider::-webkit-slider-thumb {
+                -webkit-appearance: none;
+                appearance: none;
+                height: 16px;
+                width: 16px;
+                background-color: ${color.background};
+                border-width: 2px;
+                border-style: solid;
+                border-color: ${color.foreground};
+                border-radius: 8px;
+                cursor: pointer;
+              }
+              .sentence:hover {
+                opacity: 0.7;
+              }
+            `}
           </style>
         </Helmet>
         <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
