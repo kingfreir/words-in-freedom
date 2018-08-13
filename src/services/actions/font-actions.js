@@ -2,6 +2,7 @@ import {
   CHANGE_FONT,
   CHANGE_FONT_SIZE,
   CHANGE_ROTATION,
+  CHANGE_SPACING,
 } from '../types/font-types'
 
 export const changeFont = font => ({
@@ -17,4 +18,9 @@ export const changeFontSize = size => ({
 export const changeRotation = degrees => ({
   type: CHANGE_ROTATION,
   payload: degrees,
+})
+
+export const changeSpacing = spacing => ({
+  type: CHANGE_SPACING,
+  payload: spacing,
 })

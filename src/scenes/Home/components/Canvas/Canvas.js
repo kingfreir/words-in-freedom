@@ -17,6 +17,7 @@ class Canvas extends Component {
     }).isRequired,
     requestDownload: PropTypes.bool.isRequired,
     onDownloadComplete: PropTypes.func.isRequired,
+    onSentenceSelect: PropTypes.func.isRequired,
   }
 
   constructor(props) {
@@ -26,6 +27,7 @@ class Canvas extends Component {
       content: [],
     }
 
+    this.sentences = []
     this.canvas = React.createRef()
   }
 
@@ -35,11 +37,19 @@ class Canvas extends Component {
     }
   }
 
+  handleRotation = () => {
+    const { font } = this.props
+    const radian = (font.rotation / 180) * Math.PI
+    const sin  = Math.sin(radian)
+    const cos = Math.cos(radian)
+
+    console.log(sin,cos)
+  }
+
   onDrop = (e) => {
     e.persist()
     const sentence = e.dataTransfer.getData("sentence")
     if (sentence) {
-      console.log(e, this.canvas)
       this.setState(state => ({
         content: [...state.content, {
           sentence,
@@ -52,6 +62,10 @@ class Canvas extends Component {
 
   onDragOver = (e) => {
     e.preventDefault()
+  }
+
+  handleSentenceRef = (ref, index) => {
+    this.sentences[index] = ref
   }
 
   handleCanvas = () => {
@@ -68,18 +82,21 @@ class Canvas extends Component {
   }
 
   render() {
-    const { color, font } = this.props
+    const { color, font, onSentenceSelect } = this.props
+  
     return (
       <div ref={this.canvas} droppable="true" onDrop={this.onDrop} onDragOver={this.onDragOver} style={{ ...styles.container, ...themeStyles.bordered(color)}}>
         {this.state.content.map((item, index) => (
           <Sentence
+            ref={ref => this.handleSentenceRef(ref, index)}
+            onClick={() => onSentenceSelect(this.sentences[index])}
             key={`${item.sentence}-${index}`}
             sentence={item.sentence}
             font={font}
             color={color}
             initialX={item.x}
             initialY={item.y}
-            parent={this.canvas.current}
+            offsetParent={this.canvas.current}
           />
         ))}
       </div>
@@ -101,6 +118,7 @@ const mapStateToProps = ({ color, fonts }) => ({
     family: fonts.selected,
     size: fonts.size,
     rotation: fonts.rotation,
+    spacing: fonts.spacing,
   },
 })
 

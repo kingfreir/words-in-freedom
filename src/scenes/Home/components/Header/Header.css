@@ -1,6 +1,6 @@
 .header {
   margin-left: 0;
-  flex: 0.80;
+  flex: 1;
   justify-content: space-between;
   align-items: flex-end;
   flex-direction: row;
@@ -9,4 +9,5 @@
 
 .header h1 {
   margin-bottom: 0;
+  font-family: 'ZillaSlab-SemiBold';
 }

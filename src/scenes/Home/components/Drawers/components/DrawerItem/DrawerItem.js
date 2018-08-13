@@ -11,41 +11,32 @@ class DrawerItem extends Component {
     }).isRequired,
     color: PropTypes.shape({}).isRequired,
     font: PropTypes.string.isRequired,
-  }
-
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      isOpen: false,
-    }
+    open: PropTypes.bool.isRequired,
+    onOpen: PropTypes.func.isRequired,
   }
 
   onDragStart = (ev, sentence) => {
     ev.dataTransfer.setData("sentence", sentence)
   }
 
-  onToggle = () => {
-    this.setState(state => ({
-      isOpen: !state.isOpen,
-    }))
-  }
-
   render() {
     const {
       item,
       color,
-      font
+      font,
+      open,
+      onOpen,
     } = this.props
+
     return (
-      <div style={styles.container}>
+      <div style={styles.container(open)}>
         <button
           className={style.button}
           style={{ backgroundColor: color.foreground, color: color.background }}
-          onClick={() => this.onToggle()}>
+          onClick={onOpen}>
             {item.name}
         </button>
-        <div style={{ display: this.state.isOpen ? 'block' : 'none', ...themeStyles.bordered(color), ...styles.content }}>
+        <div style={{ display: open ? 'block' : 'none', ...themeStyles.bordered(color), ...styles.content }}>
           {item.content.map(sentence =>
             <span
               key={sentence}
@@ -63,16 +54,18 @@ class DrawerItem extends Component {
 }
 
 const styles = {
-  container: {
+  container: isOpen => ({
     display: 'flex',
     flexDirection: 'column',
     marginBottom: '4px',
-  },
+    flex: isOpen ? 1 : undefined,
+  }),
   content: {
     margin: 0,
     padding: '4px',
     overflowY: 'scroll',
-    height: '300px'
+    borderTopWidth: 0,
+    flex: 1,
   },
   sentence: (color, font) => ({
     backgroundColor: color.foreground,

@@ -2,12 +2,35 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 class Slider extends Component {
+  static propTypes = {
+    minValue: PropTypes.number,
+    maxValue: PropTypes.number.isRequired,
+    onChange: PropTypes.func.isRequired,
+    label: PropTypes.string,
+    color: PropTypes.shape({}).isRequired,
+    step: PropTypes.number,
+    value: PropTypes.string,
+    style: PropTypes.shape({}),
+  }
+  
+  static defaultProps = {
+    minValue: 0,
+    initialValue: 0,
+    label: '',
+    step: 1,
+    style: {},
+  }
+
   constructor(props) {
     super(props)
 
     this.state = {
-      value: this.props.initialValue,
+      value: this.props.value,
     }
+  }
+
+  componentWillReceiveProps({ value }) {
+    this.setState({ value })
   }
 
   onChange = (value) => {
@@ -20,14 +43,14 @@ class Slider extends Component {
       color,
       minValue,
       maxValue,
-      initialValue,
       label,
       step,
+      style,
     } = this.props
 
     const baseStyle = styles(color)
     return (
-      <div style={baseStyle.container}>
+      <div style={{ ...baseStyle.container, ...style}}>
         <p style={baseStyle.label}>{label}</p>
         <input
           className="slider"
@@ -35,11 +58,11 @@ class Slider extends Component {
           step={step}
           min={minValue}
           max={maxValue}
-          defaultValue={initialValue}
           style={baseStyle.slider}
+          value={this.state.value || minValue}
           onChange={ev => this.onChange(ev.nativeEvent.target.value)}
         />
-        <p style={baseStyle.value} >{this.state.value}</p>
+        <p style={baseStyle.value} >{this.state.value || minValue}</p>
       </div>
     )
   }
@@ -48,49 +71,34 @@ class Slider extends Component {
 const styles = color => ({
   slider: {
     height: '2px',
-    width: '90%',
-    marginLeft: '-4px',
-    marginRight: '4px',
     outline: 'none',
+    width: '100px',
   },
   container: {
     position: 'relative',
     flexDirection: 'row',
     display: 'flex',
     alignItems: 'center',
-    width: '100%',
+    justifyContent: 'space-between',
     marginTop: '4px',
     marginBottom: '4px',
-    height: '24px',
   },
   value: {
     fontFamily: 'arial',
     fontSize: '14px',
+    width: '20px',
     marginRight: '4px',
+    textAlign: 'center',
     color: color.foreground
   },
   label: {
     fontFamily: 'arial',
     fontSize: '10px',
-    color: color.foreground
+    width: '50px',
+    textAlign: 'center',
+    color: color.foreground,
+    marginRight: '8px',
   }
 })
-
-Slider.propTypes = {
-  minValue: PropTypes.number,
-  maxValue: PropTypes.number.isRequired,
-  onChange: PropTypes.func.isRequired,
-  initialValue: PropTypes.any,
-  label: PropTypes.string,
-  color: PropTypes.shape({}).isRequired,
-  step: PropTypes.number,
-}
-
-Slider.defaultProps = {
-  minValue: 0,
-  initialValue: 0,
-  label: '',
-  step: 1,
-}
 
 export default Slider

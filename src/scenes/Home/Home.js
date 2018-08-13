@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Helmet } from 'react-helmet'
 import { connect } from 'react-redux'
-import styles from './Home.css'
+import homeStyles from './Home.css'
 import { drawerActions } from '../../services/actions'
 
 import Header from './components/Header/Header'
@@ -22,6 +22,7 @@ class Home extends Component {
 
     this.state = {
       downloadRequested: false,
+      selected: undefined,
     }
   }
 
@@ -40,11 +41,15 @@ class Home extends Component {
     })
   }
 
+  handleSentenceSelection = (ref) => {
+    this.setState({ selected: ref })
+  }
+
   render() {
     const { color, drawers } = this.props
 
     return (
-      <div className={[styles.home]}>
+      <div className={[homeStyles.home]}>
         <Helmet>
           <style type='text/css'>
             {`
@@ -80,24 +85,33 @@ class Home extends Component {
           />
         </div>
         <div style={{ display: 'flex', flex: 1, flexDirection: 'row', justifyContent: 'center' }} >
-          <div style={{ display: 'flex', flex: 0.20, flexDirection: 'column'}}>
+          <div style={{ display: 'flex', flexDirection: 'column', width: '200px' }}>
             <Drawers data={Object.values(drawers)}/>
             <Controls ref={this.canvas} >
               <Controls.Fonts />
             </Controls>
           </div>
-          <div style={{ display: 'flex', flex: 0.6, flexDirection: 'column'}}>
+          <div style={{ display: 'flex', flex: 1, flexDirection: 'column'}}>
             <Canvas
               requestDownload={this.state.downloadRequested}
               onDownloadComplete={this.handleDownloadComplete}
+              onSentenceSelect={this.handleSentenceSelection}
             />
-            <Controls bordered >
+            <Controls bordered style={styles.controls}>
               <Controls.Color />
+              <Controls.Sentence sentenceRef={this.state.selected}/>
             </Controls>
           </div>
         </div>
       </div>
     )
+  }
+}
+
+const styles = {
+  controls: {
+    display: 'flex',
+    flexDirection: 'row',
   }
 }
 

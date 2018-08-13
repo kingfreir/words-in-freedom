@@ -12,6 +12,20 @@ class Drawers extends Component {
     selectedFont: PropTypes.string.isRequired
   }
 
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      openDrawer: null,
+    }
+  }
+
+  onDrawerOpen = index => this.setState(state => {
+    return {
+      openDrawer: index === state.openDrawer ? null : index,
+    }
+  })
+
   render() {
     const {
       data,
@@ -27,6 +41,8 @@ class Drawers extends Component {
             item={item}
             color={color}
             font={selectedFont}
+            onOpen={() => this.onDrawerOpen(index)}
+            open={this.state.openDrawer === index}
           />))}
       </div>
     )

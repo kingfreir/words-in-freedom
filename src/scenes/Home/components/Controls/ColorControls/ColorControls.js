@@ -30,6 +30,7 @@ class ColorControls extends Component {
     const {
       color
     } = this.props
+
     return (
       <ColorPicker
         color={color.background}

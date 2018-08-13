@@ -15,6 +15,8 @@ class FontControls extends Component {
     fontSize: PropTypes.string.isRequired,
     changeRotation: PropTypes.func.isRequired,
     rotation: PropTypes.string.isRequired,
+    changeSpacing: PropTypes.func.isRequired,
+    spacing: PropTypes.string.isRequired,
   }
 
   constructor(props) {
@@ -35,6 +37,7 @@ class FontControls extends Component {
       color,
       fontSize,
       rotation,
+      spacing,
     } = this.props
 
     return (
@@ -44,14 +47,15 @@ class FontControls extends Component {
           options={this.options}
           onChange={this.handleChange}
           styles={styles(color)}
-          maxMenuHeight={200}
+          maxMenuHeight={140}
+          menuPosition="fixed"
         />
         <Slider
           color={color}
           onChange={this.props.changeFontSize}
           minValue={10}
           maxValue={60}
-          initialValue={fontSize}
+          value={fontSize}
           label="Font Size"
         />
         <Slider
@@ -59,8 +63,16 @@ class FontControls extends Component {
           onChange={this.props.changeRotation}
           minValue={0}
           maxValue={180}
-          initialValue={rotation}
+          value={rotation}
           label="Rotation"
+        />
+        <Slider
+          color={color}
+          onChange={this.props.changeSpacing}
+          minValue={-20}
+          maxValue={20}
+          value={spacing}
+          label="Letter Spacing"
         />
       </div>
     )
@@ -70,6 +82,7 @@ class FontControls extends Component {
 const styles = color => ({
   control: styles => ({
     ...styles,
+    padding: 0,
     borderRadius: 0,
     borderWidth: 0,
     backgroundColor: color.foreground,
@@ -95,6 +108,8 @@ const styles = color => ({
     borderWidth: '2px',
     borderColor: color.foreground,
     borderStyle: 'solid',
+    marginTop: 0,
+    borderTopWidth: 0,
   }),
   singleValue: (styles, { data }) => ({
     ...styles,
@@ -107,6 +122,7 @@ const mapDispatchToProps = {
   changeFont: fontActions.changeFont,
   changeFontSize: fontActions.changeFontSize,
   changeRotation: fontActions.changeRotation,
+  changeSpacing: fontActions.changeSpacing,
 }
 
 const mapStateToProps = ({ fonts, color }) => ({
@@ -115,6 +131,7 @@ const mapStateToProps = ({ fonts, color }) => ({
   selected: fonts.selected,
   fontSize: fonts.size,
   rotation: fonts.rotation,
+  spacing: fonts.spacing,
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(FontControls)
