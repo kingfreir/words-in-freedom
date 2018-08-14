@@ -9,7 +9,8 @@
     "drawers": "node src/services/db/drawers.js",
     "dev": "webpack --mode development",
     "build": "webpack --mode production",
-    "start": "webpack-dev-server --config ./webpack.config.js --mode development"
+    "start-dev": "webpack-dev-server --config ./webpack.config.js --mode development",
+    "start": "yarn build && webpack-dev-server --config ./webpack.config.js --mode production"
   },
   "dependencies": {
     "chroma-js": "^1.3.7",
