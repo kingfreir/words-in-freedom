@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import Select from 'react-select'
 import { fontActions } from '../../../../../services/actions'
 import Slider from '../Slider/Slider'
+import Select from '../Select/Select'
 
 class FontControls extends Component {
   static propTypes = {
@@ -43,12 +43,10 @@ class FontControls extends Component {
     return (
       <div>
         <Select
+          color={color}
           defaultValue={this.options[0]}
           options={this.options}
           onChange={this.handleChange}
-          styles={styles(color)}
-          maxMenuHeight={140}
-          menuPosition="fixed"
         />
         <Slider
           color={color}
@@ -61,7 +59,7 @@ class FontControls extends Component {
         <Slider
           color={color}
           onChange={this.props.changeRotation}
-          minValue={0}
+          minValue={-180}
           maxValue={180}
           value={rotation}
           label="Rotation"
@@ -78,45 +76,6 @@ class FontControls extends Component {
     )
   }
 }
-
-const styles = color => ({
-  control: styles => ({
-    ...styles,
-    padding: 0,
-    borderRadius: 0,
-    borderWidth: 0,
-    backgroundColor: color.foreground,
-    color: color.background,
-  }),
-  option: (styles, { data }) => ({
-    ...styles,
-    fontFamily: data.value,
-    color: color.foreground,
-  }),
-  dropdownIndicator: styles => ({
-    ...styles,
-    color: color.background,
-  }),
-  indicatorSeparator: styles => ({
-    ...styles,
-    backgroundColor: color.background,
-  }),
-  menu: styles => ({
-    ...styles,
-    borderRadius: 0,
-    backgroundColor: color.background,
-    borderWidth: '2px',
-    borderColor: color.foreground,
-    borderStyle: 'solid',
-    marginTop: 0,
-    borderTopWidth: 0,
-  }),
-  singleValue: (styles, { data }) => ({
-    ...styles,
-    fontFamily: data.value,
-    color: color.background,
-  })
-})
 
 const mapDispatchToProps = {
   changeFont: fontActions.changeFont,

@@ -85,7 +85,13 @@ class Canvas extends Component {
     const { color, font, onSentenceSelect } = this.props
   
     return (
-      <div ref={this.canvas} droppable="true" onDrop={this.onDrop} onDragOver={this.onDragOver} style={{ ...styles.container, ...themeStyles.bordered(color)}}>
+      <div
+        ref={this.canvas}
+        droppable="true" 
+        onDrop={this.onDrop}
+        onDragOver={this.onDragOver}
+        style={{ ...styles.container, ...themeStyles.bordered(color)}}
+      >
         {this.state.content.map((item, index) => (
           <Sentence
             ref={ref => this.handleSentenceRef(ref, index)}

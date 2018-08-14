@@ -32,7 +32,7 @@ class DrawerItem extends Component {
       <div style={styles.container(open)}>
         <button
           className={style.button}
-          style={{ backgroundColor: color.foreground, color: color.background }}
+          style={{ backgroundColor: color.foreground, color: color.background, textAlign: 'left' }}
           onClick={onOpen}>
             {item.name}
         </button>

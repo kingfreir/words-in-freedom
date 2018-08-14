@@ -79,7 +79,7 @@ const styles = color => ({
     flexDirection: 'row',
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
     marginTop: '4px',
     marginBottom: '4px',
   },

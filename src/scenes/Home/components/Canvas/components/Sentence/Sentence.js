@@ -104,6 +104,7 @@ class Sentence extends Component {
       sentence,
       initialX,
       initialY,
+      onClick,
       ...props
     } = this.props
 
@@ -120,7 +121,7 @@ class Sentence extends Component {
         handle=".sentence"
         {...props}
       >
-        <div style={{ position: 'absolute' }}>
+        <div style={{ position: 'absolute' }} onClick={onClick}>
           <span className="sentence" style={{...this.getCustomStyle()}}>
             {this.state.sentence || sentence}
           </span>

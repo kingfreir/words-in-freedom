@@ -6,6 +6,9 @@ const get_app = require('./sharp-get_app-24px.svg')
 const language = require('./sharp-language-24px.svg')
 const menu = require('./sharp-menu-24px.svg')
 const share = require('./sharp-share-24px.svg')
+const link = require('./sharp-insert_link-24px.svg')
+const checkbox_filled = require('./sharp-check_box-24px.svg')
+const checkbox = require('./sharp-check_box_outline_blank-24px.svg')
 
 export default {
   create,
@@ -15,5 +18,8 @@ export default {
   get_app,
   language,
   menu,
-  share
+  share,
+  link,
+  checkbox,
+  checkbox_filled,
 }
