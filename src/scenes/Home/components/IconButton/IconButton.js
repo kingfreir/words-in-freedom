@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import chroma from 'chroma-js'
 import ReactSVG from 'react-svg'
 import css from './IconButton.css'
 import icons from '../../../../icons'

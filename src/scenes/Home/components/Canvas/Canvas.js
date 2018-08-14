@@ -37,15 +37,6 @@ class Canvas extends Component {
     }
   }
 
-  handleRotation = () => {
-    const { font } = this.props
-    const radian = (font.rotation / 180) * Math.PI
-    const sin  = Math.sin(radian)
-    const cos = Math.cos(radian)
-
-    console.log(sin,cos)
-  }
-
   onDrop = (e) => {
     e.persist()
     const sentence = e.dataTransfer.getData("sentence")
