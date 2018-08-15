@@ -1,9 +1,9 @@
 const path = require('path')
+const webpack = require('webpack')
 const HtmlWebPackPlugin = require('html-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = {
-  mode: process.env.WEBPACK_SERVE ? 'development' : 'production',
   entry: [
     'react-hot-loader/patch',
     './src/index.js',
@@ -24,11 +24,14 @@ module.exports = {
     ]
   },
   plugins: [
+     this.mode === 'development'
+      ? new webpack.HotModuleReplacementPlugin()
+      : false,
     new HtmlWebPackPlugin({
       template: './src/index.html',
       filename: './index.html'
     })
-  ],
+  ].filter(Boolean),
   module: {
     rules: [
       {
