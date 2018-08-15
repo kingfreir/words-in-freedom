@@ -1,7 +1,6 @@
-const serve = require('webpack-serve')
-const argv = {}
-const config = require('./webpack.config.js')
+const express = require('express')
+const app = express()
 
-serve(argv, { config }).then((result) => {
-  // ...
-})
+app.use(express.static('build'))
+app.listen(8080)
+
