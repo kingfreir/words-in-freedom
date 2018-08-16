@@ -33,8 +33,12 @@
     "setup": "npm run fonts && npm run drawers",
     "build": "webpack --config webpack.config.js",
     "serve": "node app.js",
+<<<<<<< HEAD
     "clean": "node scripts/clean.js",
     "start": "npm run clean && npm run setup && npm run build && npm run serve",
+=======
+    "start": "npm run build && npm run serve",
+>>>>>>> 8583a8a42538c31f92db48542ddf2c574a6d5f16
     "dev": "nodemon app.js"
   },
   "author": "M-ITI, Ricardo Rodrigues",

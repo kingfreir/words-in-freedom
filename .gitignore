@@ -1,3 +1,8 @@
 node_modules
+<<<<<<< HEAD
 db.json
 public/js/*.js
+=======
+build
+yarn-error.log
+>>>>>>> 8583a8a42538c31f92db48542ddf2c574a6d5f16
