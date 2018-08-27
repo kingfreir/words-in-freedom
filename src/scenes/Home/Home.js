@@ -9,6 +9,7 @@ import Header from './components/Header/Header'
 import Drawers from './components/Drawers/Drawers'
 import Canvas from './components/Canvas/Canvas'
 import Controls from './components/Controls/Controls'
+import IconButton from './components/IconButton/IconButton'
 
 class Home extends Component {
   static propTypes = {
@@ -23,6 +24,8 @@ class Home extends Component {
     this.state = {
       downloadRequested: false,
       selected: undefined,
+      openDrawers: false,
+      editable: false,
     }
   }
 
@@ -43,6 +46,10 @@ class Home extends Component {
 
   handleSentenceSelection = (ref) => {
     this.setState({ selected: ref })
+  }
+
+  handlePanel = () => {
+    this.setState(state => ({ openDrawers: !state.openDrawers }))
   }
 
   render() {
@@ -82,13 +89,17 @@ class Home extends Component {
         <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
           <Header
             onDownload={this.handleDownload}
+            onEdit={() => this.setState(state => ({ editable: !state.editable }))}
+            editable={this.state.editable}
           />
         </div>
         <div style={{ display: 'flex', flex: 1, flexDirection: 'row', justifyContent: 'center' }} >
-          <div style={{ display: 'flex', flexDirection: 'column', width: '200px' }}>
+          <IconButton type="menu" onPress={this.handlePanel}/>
+          <div style={{ display: this.state.openDrawers ? 'flex' : 'none', flexDirection: 'column', width: '200px' }}>
             <Drawers data={Object.values(drawers)}/>
-            <Controls ref={this.canvas} >
+            <Controls ref={this.canvas} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}}>
               <Controls.Fonts />
+              <Controls.Color />
             </Controls>
           </div>
           <div style={{ display: 'flex', flex: 1, flexDirection: 'column'}}>
@@ -96,11 +107,8 @@ class Home extends Component {
               requestDownload={this.state.downloadRequested}
               onDownloadComplete={this.handleDownloadComplete}
               onSentenceSelect={this.handleSentenceSelection}
+              editable={this.state.editable}
             />
-            <Controls bordered style={styles.controls}>
-              <Controls.Color />
-              <Controls.Sentence sentenceRef={this.state.selected}/>
-            </Controls>
           </div>
         </div>
       </div>

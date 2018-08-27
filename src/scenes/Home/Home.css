@@ -1,10 +1,9 @@
 .home {
   display: flex;
   flex-direction: column;
-  flex: 0.8;
+  flex: 1;
   padding: 10px;
-  margin-top: 30px;
-  margin-bottom: 30px;
+  margin: 20px;
 }
 
 html, body {

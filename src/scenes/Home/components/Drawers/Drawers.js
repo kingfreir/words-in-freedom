@@ -9,7 +9,6 @@ class Drawers extends Component {
   static propTypes = {
     data: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
     color: PropTypes.shape({}).isRequired,
-    selectedFont: PropTypes.string.isRequired
   }
 
   constructor(props) {
@@ -30,7 +29,6 @@ class Drawers extends Component {
     const {
       data,
       color,
-      selectedFont,
     } = this.props
 
     return (
@@ -40,7 +38,6 @@ class Drawers extends Component {
             key={index}
             item={item}
             color={color}
-            font={selectedFont}
             onOpen={() => this.onDrawerOpen(index)}
             open={this.state.openDrawer === index}
           />))}
@@ -58,9 +55,6 @@ const styles = {
   },
 }
 
-const mapStateToProps = ({ color, fonts }) => ({
-  color,
-  selectedFont: fonts.selected,
-})
+const mapStateToProps = ({ color }) => ({ color })
 
 export default connect(mapStateToProps)(Drawers)

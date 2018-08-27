@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import html2canvas from 'html2canvas'
 import themeStyles from '../../../../theme/styles'
-
+import Controls from '../Controls/Controls'
 import Sentence from './components/Sentence/Sentence'
 
 class Canvas extends Component {
@@ -17,7 +17,7 @@ class Canvas extends Component {
     }).isRequired,
     requestDownload: PropTypes.bool.isRequired,
     onDownloadComplete: PropTypes.func.isRequired,
-    onSentenceSelect: PropTypes.func.isRequired,
+    editable: PropTypes.bool.isRequired,
   }
 
   constructor(props) {
@@ -25,6 +25,7 @@ class Canvas extends Component {
 
     this.state = {
       content: [],
+      selected: null,
     }
 
     this.sentences = []
@@ -73,7 +74,7 @@ class Canvas extends Component {
   }
 
   render() {
-    const { color, font, onSentenceSelect } = this.props
+    const { color, font, editable } = this.props
   
     return (
       <div
@@ -86,7 +87,9 @@ class Canvas extends Component {
         {this.state.content.map((item, index) => (
           <Sentence
             ref={ref => this.handleSentenceRef(ref, index)}
-            onClick={() => onSentenceSelect(this.sentences[index])}
+            onClick={() => this.setState({ selected: index })}
+            selected={this.state.selected === index}
+            editable={editable}
             key={`${item.sentence}-${index}`}
             sentence={item.sentence}
             font={font}
@@ -96,6 +99,7 @@ class Canvas extends Component {
             offsetParent={this.canvas.current}
           />
         ))}
+        {this.state.selected !== null && editable && <Controls.Sentence sentenceRef={this.sentences[this.state.selected]}/>}
       </div>
     )
   }
@@ -104,7 +108,7 @@ class Canvas extends Component {
 const styles = {
   container: {
     position: 'relative',
-    flex: 0.8,
+    flex: 1,
     overflow: 'hidden',
   }
 }

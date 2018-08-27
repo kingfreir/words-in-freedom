@@ -69,7 +69,6 @@ class SentenceControls extends Component {
 
     return props ? (
       <div style={baseStyle.container}>
-        <textarea style={baseStyle.textarea} value={this.state.value} onChange={this.handleSentenceChange}/>
         <Select
           color={color}
           options={this.options}

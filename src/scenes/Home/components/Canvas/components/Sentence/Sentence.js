@@ -15,6 +15,13 @@ class Sentence extends Component {
     }).isRequired,
     offsetParent: PropTypes.any.isRequired,
     onClick: PropTypes.func.isRequired,
+    selected: PropTypes.bool,
+    editable: PropTypes.bool,
+  }
+
+  static defaultProps = {
+    selected: false,
+    editable: false,
   }
 
   constructor(props) {
@@ -96,6 +103,7 @@ class Sentence extends Component {
       transformOrigin: 'center', // (linkedToGlobal && rotation) ? 'center' : this.getTransformOrigin(),
       letterSpacing: `${isGlobal(spacing, font.spacing)}px`,
       lineHeight: height ? `${height}px` : undefined,
+      outline: 'none',
     }
   }
 
@@ -105,6 +113,7 @@ class Sentence extends Component {
       initialX,
       initialY,
       onClick,
+      editable,
       ...props
     } = this.props
 
@@ -119,11 +128,17 @@ class Sentence extends Component {
         onDrag={this.handleDrag}
         onMouseDown={this.handleMouseDown}
         handle=".sentence"
+        disabled={editable}
         {...props}
       >
         <div style={{ position: 'absolute' }} onClick={onClick}>
-          <span className="sentence" style={{...this.getCustomStyle()}}>
-            {this.state.sentence || sentence}
+          <span
+            contentEditable={editable ? 'true' : 'false'}
+            suppressContentEditableWarning="true"
+            className="sentence"
+            style={{...this.getCustomStyle()}}
+          >
+            {sentence}
           </span>
         </div>
       </Draggable>

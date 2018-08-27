@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import Icon from '../../Icon/Icon'
 
 class Slider extends Component {
   static propTypes = {
     minValue: PropTypes.number,
     maxValue: PropTypes.number.isRequired,
     onChange: PropTypes.func.isRequired,
-    label: PropTypes.string,
+    type: PropTypes.string,
     color: PropTypes.shape({}).isRequired,
     step: PropTypes.number,
     value: PropTypes.string,
@@ -16,7 +17,7 @@ class Slider extends Component {
   static defaultProps = {
     minValue: 0,
     initialValue: 0,
-    label: '',
+    type: 'format_size',
     step: 1,
     style: {},
   }
@@ -43,7 +44,7 @@ class Slider extends Component {
       color,
       minValue,
       maxValue,
-      label,
+      type,
       step,
       style,
     } = this.props
@@ -51,7 +52,7 @@ class Slider extends Component {
     const baseStyle = styles(color)
     return (
       <div style={{ ...baseStyle.container, ...style}}>
-        <p style={baseStyle.label}>{label}</p>
+        <Icon type={type} />
         <input
           className="slider"
           type="range"
@@ -62,7 +63,6 @@ class Slider extends Component {
           value={this.state.value || minValue}
           onChange={ev => this.onChange(ev.nativeEvent.target.value)}
         />
-        <p style={baseStyle.value} >{this.state.value || minValue}</p>
       </div>
     )
   }
@@ -72,7 +72,7 @@ const styles = color => ({
   slider: {
     height: '2px',
     outline: 'none',
-    width: '100px',
+    width: '100%',
   },
   container: {
     position: 'relative',
@@ -82,6 +82,7 @@ const styles = color => ({
     justifyContent: 'flex-start',
     marginTop: '4px',
     marginBottom: '4px',
+    height: '20px',
   },
   value: {
     fontFamily: 'arial',

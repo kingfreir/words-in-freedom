@@ -54,7 +54,7 @@ class FontControls extends Component {
           minValue={10}
           maxValue={60}
           value={fontSize}
-          label="Font Size"
+          type="format_size"
         />
         <Slider
           color={color}
@@ -62,7 +62,7 @@ class FontControls extends Component {
           minValue={-180}
           maxValue={180}
           value={rotation}
-          label="Rotation"
+          type="loop"
         />
         <Slider
           color={color}
@@ -70,7 +70,7 @@ class FontControls extends Component {
           minValue={-20}
           maxValue={20}
           value={spacing}
-          label="Letter Spacing"
+          type="border_color"
         />
       </div>
     )

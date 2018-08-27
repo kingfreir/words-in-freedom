@@ -10,7 +10,6 @@ class DrawerItem extends Component {
       content: PropTypes.arrayOf(PropTypes.string)
     }).isRequired,
     color: PropTypes.shape({}).isRequired,
-    font: PropTypes.string.isRequired,
     open: PropTypes.bool.isRequired,
     onOpen: PropTypes.func.isRequired,
   }
@@ -23,7 +22,6 @@ class DrawerItem extends Component {
     const {
       item,
       color,
-      font,
       open,
       onOpen,
     } = this.props
@@ -42,7 +40,7 @@ class DrawerItem extends Component {
               key={sentence}
               draggable="true"
               onDragStart={(e) => this.onDragStart(e, sentence)}
-              style={styles.sentence(color, font)}
+              style={styles.sentence(color)}
             >
               {sentence}
             </span>
@@ -67,13 +65,13 @@ const styles = {
     borderTopWidth: 0,
     flex: 1,
   },
-  sentence: (color, font) => ({
+  sentence: color => ({
     backgroundColor: color.foreground,
     color: color.background,
     padding: '2px',
     margin: '4px',
     display: 'inline-block',
-    fontFamily: font,
+    fontFamily: 'monospace',
     cursor: 'pointer'
   }),
 }
