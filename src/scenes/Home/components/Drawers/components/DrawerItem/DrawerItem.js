@@ -30,7 +30,7 @@ class DrawerItem extends Component {
       <div style={styles.container(open)}>
         <button
           className={style.button}
-          style={{ backgroundColor: color.foreground, color: color.background, textAlign: 'left' }}
+          style={styles.button(color)}
           onClick={onOpen}>
             {item.name}
         </button>
@@ -65,6 +65,14 @@ const styles = {
     borderTopWidth: 0,
     flex: 1,
   },
+  button: color => ({
+    backgroundColor: color.foreground,
+    color: color.background,
+    textAlign: 'left',
+    fontSize: '14px',
+    lineHeight: '7px',
+    fontFamily: 'monospace',
+  }),
   sentence: color => ({
     backgroundColor: color.foreground,
     color: color.background,
@@ -72,6 +80,7 @@ const styles = {
     margin: '4px',
     display: 'inline-block',
     fontFamily: 'monospace',
+    fontsize: 14,
     cursor: 'pointer'
   }),
 }

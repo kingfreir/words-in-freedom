@@ -18,6 +18,7 @@ class Canvas extends Component {
     requestDownload: PropTypes.bool.isRequired,
     onDownloadComplete: PropTypes.func.isRequired,
     editable: PropTypes.bool.isRequired,
+    onSentenceCreation: PropTypes.func.isRequired,
   }
 
   constructor(props) {
@@ -73,6 +74,26 @@ class Canvas extends Component {
       })
   }
 
+  handleSentenceClick = index => () => {
+    this.setState({ selected: index })
+  }
+
+  handleSentenceCreation = (e) => {
+    if((e.target !== this.canvas.current) || this.props.editable) return
+    e.persist()
+    this.props.onSentenceCreation()
+    this.setState(state => ({
+      selected: state.content.length,
+      content: [...state.content, {
+        sentence: ' ',
+        x: e.nativeEvent.offsetX,
+        y: e.nativeEvent.offsetY,
+      }]
+    }), () => {
+      this.sentences[this.state.content.length - 1].focus()
+    })
+  }
+
   render() {
     const { color, font, editable } = this.props
   
@@ -82,12 +103,13 @@ class Canvas extends Component {
         droppable="true" 
         onDrop={this.onDrop}
         onDragOver={this.onDragOver}
+        onClick={this.handleSentenceCreation}
         style={{ ...styles.container, ...themeStyles.bordered(color)}}
       >
         {this.state.content.map((item, index) => (
           <Sentence
             ref={ref => this.handleSentenceRef(ref, index)}
-            onClick={() => this.setState({ selected: index })}
+            onClick={this.handleSentenceClick(index)}
             selected={this.state.selected === index}
             editable={editable}
             key={`${item.sentence}-${index}`}
@@ -110,6 +132,7 @@ const styles = {
     position: 'relative',
     flex: 1,
     overflow: 'hidden',
+    cursor: 'text',
   }
 }
 

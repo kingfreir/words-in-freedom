@@ -41,6 +41,12 @@ class Sentence extends Component {
       height: undefined,
       linkedToGlobal: false,
     }
+
+    this.span = React.createRef()
+  }
+
+  focus = () => {
+    this.span.current.focus()
   }
 
   getTransformOrigin = () => {
@@ -54,16 +60,17 @@ class Sentence extends Component {
   }
 
   handleDrag = (ev) => {
+    ev.stopPropagation()
     this.setState(() => {
       const x = ev.x - this.mouseX
       const y = ev.y - this.mouseY
 
       return { position: { x, y }}
     })
-
   }
 
   handleMouseDown = (ev) => {
+    ev.stopPropagation()
     this.props.onClick()
     this.mouseX = ev.nativeEvent.x - this.state.position.x 
     this.mouseY = ev.nativeEvent.y - this.state.position.y
@@ -100,7 +107,7 @@ class Sentence extends Component {
       fontFamily: isGlobal(family, font.family),
       fontSize: isGlobal(size, font.size) + 'px',
       transform: `rotate(${isGlobal(rotation, font.rotation)}deg)`,
-      transformOrigin: 'center', // (linkedToGlobal && rotation) ? 'center' : this.getTransformOrigin(),
+      transformOrigin: 'center',
       letterSpacing: `${isGlobal(spacing, font.spacing)}px`,
       lineHeight: height ? `${height}px` : undefined,
       outline: 'none',
@@ -133,6 +140,7 @@ class Sentence extends Component {
       >
         <div style={{ position: 'absolute' }} onClick={onClick}>
           <span
+            ref={this.span}
             contentEditable={editable ? 'true' : 'false'}
             suppressContentEditableWarning="true"
             className="sentence"

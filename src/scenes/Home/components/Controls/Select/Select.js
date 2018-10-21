@@ -8,18 +8,21 @@ const CustomSelect = ({
   onChange,
   inverted,
   defaultValue,
+  style,
   ...props
 }) => {
   return (
-    <Select
-      defaultValue={defaultValue}
-      options={options}
-      onChange={onChange}
-      styles={styles(color, inverted)}
-      maxMenuHeight={140}
-      menuPosition="fixed"
-      {...props}
-    />
+    <div style={style}>
+      <Select
+        defaultValue={defaultValue}
+        options={options}
+        onChange={onChange}
+        styles={styles(color, inverted)}
+        maxMenuHeight={140}
+        menuPosition="fixed"
+        {...props}
+      />
+    </div>
   )
 }
 

@@ -19,6 +19,7 @@ class Header extends Component {
     return (
       <div className={[style.header]}>
           <IconButton type={editable ? "done" : 'create'} onPress={onEdit}/>
+          <IconButton type="share" onPress={() => {}}/>
           <IconButton type="get_app" onPress={onDownload}/>
       </div>
     )

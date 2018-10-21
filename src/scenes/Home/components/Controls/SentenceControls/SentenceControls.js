@@ -83,8 +83,8 @@ class SentenceControls extends Component {
             maxValue={60}
             onChange={this.handleParameter('size')}
             value={(state && state.size) || (props && props.font.size)}
-            label="Font Size"
             style={baseStyle.slider}
+            type="format_size"
           />
           <Slider
             color={color}
@@ -92,8 +92,8 @@ class SentenceControls extends Component {
             maxValue={100}
             onChange={this.handleParameter('height')}
             value={(state && state.height) || (props && props.font.size)}
-            label="Line Height"
             style={baseStyle.slider}
+            type="loop"
           />
           <Slider
             color={color}
@@ -101,8 +101,8 @@ class SentenceControls extends Component {
             maxValue={180}
             onChange={this.handleParameter('rotation')}
             value={(state && state.rotation) || (props && props.font.rotation)}
-            label="Rotation"
             style={baseStyle.slider}
+            type="loop"
           />
           <Slider
             color={color}
@@ -110,8 +110,8 @@ class SentenceControls extends Component {
             maxValue={20}
             onChange={this.handleParameter('spacing')}
             value={(state && state.spacing) || (props && props.font.spacing)}
-            label="Letter Spacing"
             style={baseStyle.slider}
+            type="loop"
           />
         </div>
       </div>

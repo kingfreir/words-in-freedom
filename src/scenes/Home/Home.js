@@ -107,19 +107,13 @@ class Home extends Component {
               requestDownload={this.state.downloadRequested}
               onDownloadComplete={this.handleDownloadComplete}
               onSentenceSelect={this.handleSentenceSelection}
+              onSentenceCreation={() => this.setState({ editable: true })}
               editable={this.state.editable}
             />
           </div>
         </div>
       </div>
     )
-  }
-}
-
-const styles = {
-  controls: {
-    display: 'flex',
-    flexDirection: 'row',
   }
 }
 

@@ -47,6 +47,7 @@ class FontControls extends Component {
           defaultValue={this.options[0]}
           options={this.options}
           onChange={this.handleChange}
+          style={{ marginBottom: 12 }}
         />
         <Slider
           color={color}
