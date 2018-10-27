@@ -23,12 +23,11 @@ class Header extends Component {
       past,
       future,
     } = this.props
-
     return (
       <div className={[style.header]}>
           <IconButton type={editable ? "done" : 'create'} onPress={onEdit}/>
-          <IconButton type="undo" onPress={onUndo} hold disabled={past === 0 }/>
-          <IconButton type="redo" onPress={onRedo} hold disabled={future === 0} />
+          <IconButton type="undo" onPress={() => onUndo()} hold disabled={past <= 0} />
+          <IconButton type="redo" onPress={() => onRedo()} hold disabled={future <= 0} />
       </div>
     )
   }

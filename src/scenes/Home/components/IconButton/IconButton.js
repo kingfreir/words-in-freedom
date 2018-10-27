@@ -47,8 +47,8 @@ class IconButton extends Component {
         className={css.iconButton}
         svgStyle={{ ...styles(color, disabled), ...style } }
         onClick={disabled ? () => {} : onPress}
-        onMouseDown={hold && !disabled ? this.handleHoldDown : () => {}}
-        onMouseUp={hold && !disabled ? this.handleLetGo : () => {}}
+        onMouseDown={hold ? this.handleHoldDown : () => {}}
+        onMouseUp={hold ? this.handleLetGo : () => {}}
       />
     )
   }
