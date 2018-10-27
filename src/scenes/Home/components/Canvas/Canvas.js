@@ -25,6 +25,7 @@ class Canvas extends Component {
     updateCanvas: PropTypes.func.isRequired,
     canvas: PropTypes.shape({}).isRequired,
     editSentence: PropTypes.func.isRequired,
+    selectSentence: PropTypes.func.isRequired,
   }
 
   constructor(props) {
@@ -76,7 +77,7 @@ class Canvas extends Component {
   }
 
   handleSentenceClick = id => () => {
-    
+    this.props.selectSentence(id)
   }
 
   handleSentenceCreation = (e) => {
@@ -155,6 +156,7 @@ const mapStateToProps = ({ canvas }) => {
 const mapDispatchToProps = {
   updateCanvas: canvasActions.updateCanvas,
   editSentence: canvasActions.editSentence,
+  selectSentence: canvasActions.selectSentence,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Canvas)

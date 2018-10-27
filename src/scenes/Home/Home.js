@@ -116,7 +116,7 @@ class Home extends Component {
             />
           </div>
           <div style={{ marginTop: '4px'}}>
-            <IconButton type="share" onPress={() => {}}/>
+            <IconButton type="share" disabled onPress={() => {}}/>
             <IconButton type="get_app" onPress={this.handleDownload} />
           </div>
         </div>
