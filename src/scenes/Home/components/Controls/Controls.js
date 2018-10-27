@@ -41,7 +41,7 @@ const styles = {
   }
 }
 
-const mapStateToProps = ({ color }) => ({ color })
+const mapStateToProps = ({ canvas }) => ({ color: canvas.present.global.color })
 
 Controls.Color = ColorControls
 Controls.Fonts = FontControls

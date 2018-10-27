@@ -2,9 +2,12 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import html2canvas from 'html2canvas'
+import { canvasActions } from '../../../../services/actions'
 import themeStyles from '../../../../theme/styles'
 import Controls from '../Controls/Controls'
 import Sentence from './components/Sentence/Sentence'
+
+const generateRandomID = () => String.fromCharCode(65 + Math.floor(Math.random() * 26)) + Date.now()
 
 class Canvas extends Component {
   static propTypes = {
@@ -19,17 +22,15 @@ class Canvas extends Component {
     onDownloadComplete: PropTypes.func.isRequired,
     editable: PropTypes.bool.isRequired,
     onSentenceCreation: PropTypes.func.isRequired,
+    updateCanvas: PropTypes.func.isRequired,
+    canvas: PropTypes.shape({}).isRequired,
+    editSentence: PropTypes.func.isRequired,
   }
 
   constructor(props) {
     super(props)
 
-    this.state = {
-      content: [],
-      selected: null,
-    }
-
-    this.sentences = []
+    this.sentences = {}
     this.canvas = React.createRef()
   }
 
@@ -43,13 +44,12 @@ class Canvas extends Component {
     e.persist()
     const sentence = e.dataTransfer.getData("sentence")
     if (sentence) {
-      this.setState(state => ({
-        content: [...state.content, {
-          sentence,
-          x: e.nativeEvent.offsetX,
-          y: e.nativeEvent.offsetY,
-        }]
-      }))
+      this.props.updateCanvas({
+        id: generateRandomID(),
+        sentence,
+        x: e.nativeEvent.offsetX,
+        y: e.nativeEvent.offsetY,
+      })
     }
   }
 
@@ -57,8 +57,9 @@ class Canvas extends Component {
     e.preventDefault()
   }
 
-  handleSentenceRef = (ref, index) => {
-    this.sentences[index] = ref
+  handleSentenceRef = (ref, id) => {
+    this.sentences[id] = ref
+    if(ref) ref.focus()
   }
 
   handleCanvas = () => {
@@ -74,29 +75,25 @@ class Canvas extends Component {
       })
   }
 
-  handleSentenceClick = index => () => {
-    this.setState({ selected: index })
+  handleSentenceClick = id => () => {
+    
   }
 
   handleSentenceCreation = (e) => {
     if((e.target !== this.canvas.current) || this.props.editable) return
     e.persist()
     this.props.onSentenceCreation()
-    this.setState(state => ({
-      selected: state.content.length,
-      content: [...state.content, {
-        sentence: ' ',
-        x: e.nativeEvent.offsetX,
-        y: e.nativeEvent.offsetY,
-      }]
-    }), () => {
-      this.sentences[this.state.content.length - 1].focus()
+    this.props.updateCanvas({
+      id: generateRandomID(),
+      sentence: ' ',
+      x: e.nativeEvent.offsetX,
+      y: e.nativeEvent.offsetY,
     })
   }
 
   render() {
-    const { color, font, editable } = this.props
-  
+    const { color, font, editable, canvas } = this.props
+
     return (
       <div
         ref={this.canvas}
@@ -106,13 +103,15 @@ class Canvas extends Component {
         onClick={this.handleSentenceCreation}
         style={{ ...styles.container, ...themeStyles.bordered(color)}}
       >
-        {this.state.content.map((item, index) => (
+        {Object.values(canvas.content).map((item) => (
           <Sentence
-            ref={ref => this.handleSentenceRef(ref, index)}
-            onClick={this.handleSentenceClick(index)}
-            selected={this.state.selected === index}
+            ref={ref => this.handleSentenceRef(ref, item.id)}
+            item={item}
+            onClick={this.handleSentenceClick(item.id)}
+            selected={canvas.selected === item.id}
             editable={editable}
-            key={`${item.sentence}-${index}`}
+            onEditSentence={this.props.editSentence}
+            key={item.id}
             sentence={item.sentence}
             font={font}
             color={color}
@@ -121,7 +120,9 @@ class Canvas extends Component {
             offsetParent={this.canvas.current}
           />
         ))}
-        {this.state.selected !== null && editable && <Controls.Sentence sentenceRef={this.sentences[this.state.selected]}/>}
+        {canvas.selected !== null && editable && (
+          <Controls.Sentence sentenceRef={this.sentences[canvas.selected]}/>
+        )}
       </div>
     )
   }
@@ -136,14 +137,24 @@ const styles = {
   }
 }
 
-const mapStateToProps = ({ color, fonts }) => ({
-  color,
-  font: {
-    family: fonts.selected,
-    size: fonts.size,
-    rotation: fonts.rotation,
-    spacing: fonts.spacing,
-  },
-})
+const mapStateToProps = ({ canvas }) => {
+  const fonts = canvas.present.global.fonts
 
-export default connect(mapStateToProps)(Canvas)
+  return {
+    canvas: canvas.present,
+    color :canvas.present.global.color,
+    font: {
+      family: fonts.selected,
+      size: fonts.size,
+      rotation: fonts.rotation,
+      spacing: fonts.spacing,
+    },
+  }
+}
+
+const mapDispatchToProps = {
+  updateCanvas: canvasActions.updateCanvas,
+  editSentence: canvasActions.editSentence,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Canvas)

@@ -71,7 +71,7 @@ class FontControls extends Component {
           minValue={-20}
           maxValue={20}
           value={spacing}
-          type="border_color"
+          type="line_spacing"
         />
       </div>
     )
@@ -85,13 +85,16 @@ const mapDispatchToProps = {
   changeSpacing: fontActions.changeSpacing,
 }
 
-const mapStateToProps = ({ fonts, color }) => ({
-  color,
-  fonts: fonts.fonts,
-  selected: fonts.selected,
-  fontSize: fonts.size,
-  rotation: fonts.rotation,
-  spacing: fonts.spacing,
-})
+const mapStateToProps = ({ canvas }) => {
+  const fonts = canvas.present.global.fonts
+  return {
+    color: canvas.present.global.color,
+    fonts: fonts.fonts,
+    selected: fonts.selected,
+    fontSize: fonts.size,
+    rotation: fonts.rotation,
+    spacing: fonts.spacing,
+  }
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(FontControls)

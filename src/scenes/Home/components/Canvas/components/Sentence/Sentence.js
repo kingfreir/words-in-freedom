@@ -35,7 +35,7 @@ class Sentence extends Component {
       family: undefined,
       fontColor: undefined,
       size: undefined,
-      sentence: undefined,
+      sentence: props.sentence,
       rotation: undefined,
       spacing: undefined,
       height: undefined,
@@ -43,6 +43,17 @@ class Sentence extends Component {
     }
 
     this.span = React.createRef()
+  }
+
+  componentDidUpdate() {
+    const { onEditSentence, item } = this.props
+    if(this.span.current && (this.span.current.textContent !== this.state.sentence)) {
+      this.setState({ sentence: this.span.current.textContent }, () => {
+        if (this.state.sentence !== this.props.sentence) {
+          onEditSentence({ id: item.id, sentence: this.state.sentence })
+        }
+      })
+    }
   }
 
   focus = () => {
@@ -81,6 +92,8 @@ class Sentence extends Component {
       ...params,
       linkedToGlobal,
     })
+
+    this.props.onEditSentence({ id: this.props.item.id, ...params, linkedToGlobal })
   }
 
   getCustomStyle = () => {
@@ -93,7 +106,7 @@ class Sentence extends Component {
       rotation,
       height,
       linkedToGlobal
-    } = this.state
+    } = this.props.item
 
     const isGlobal = (self, global) => linkedToGlobal
       ? global

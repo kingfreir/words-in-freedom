@@ -14,6 +14,10 @@ const format_color_fill = require('./sharp-format_color_fill-24px.svg')
 const format_color_text = require('./sharp-format_color_text-24px.svg')
 const format_size = require('./sharp-format_size-24px.svg')
 const loop = require('./sharp-loop-24px.svg')
+const undo = require('./sharp-undo-24px.svg')
+const redo = require('./sharp-redo-24px.svg')
+const line_height = require('./format-line-spacing.svg')
+const line_spacing = require('./arrow-left-right-bold-outline.svg')
 
 export default {
   create,
@@ -32,4 +36,8 @@ export default {
   format_color_text,
   format_size,
   loop,
+  undo,
+  redo,
+  line_height,
+  line_spacing,
 }

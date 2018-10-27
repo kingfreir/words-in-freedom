@@ -55,6 +55,6 @@ const styles = {
   },
 }
 
-const mapStateToProps = ({ color }) => ({ color })
+const mapStateToProps = ({ canvas }) => ({ color: canvas.present.global.color })
 
 export default connect(mapStateToProps)(Drawers)

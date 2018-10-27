@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Helmet } from 'react-helmet'
 import { connect } from 'react-redux'
+import { ActionCreators } from 'redux-undo'
 import homeStyles from './Home.css'
 import { drawerActions } from '../../services/actions'
 
@@ -15,7 +16,9 @@ class Home extends Component {
   static propTypes = {
     color: PropTypes.shape({}).isRequired,
     drawers: PropTypes.shape({}).isRequired,
-    getDrawers: PropTypes.func.isRequired
+    getDrawers: PropTypes.func.isRequired,
+    undo: PropTypes.func.isRequired,
+    redo: PropTypes.func.isRequired,
   }
 
   constructor(props) {
@@ -88,13 +91,14 @@ class Home extends Component {
         </Helmet>
         <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
           <Header
-            onDownload={this.handleDownload}
+            onRedo={this.props.redo}
+            onUndo={this.props.undo}
             onEdit={() => this.setState(state => ({ editable: !state.editable }))}
             editable={this.state.editable}
           />
         </div>
         <div style={{ display: 'flex', flex: 1, flexDirection: 'row', justifyContent: 'center' }} >
-          <IconButton type="menu" onPress={this.handlePanel}/>
+          <IconButton type="menu" onPress={this.handlePanel} />
           <div style={{ display: this.state.openDrawers ? 'flex' : 'none', flexDirection: 'column', width: '200px' }}>
             <Drawers data={Object.values(drawers)}/>
             <Controls ref={this.canvas} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}}>
@@ -111,16 +115,22 @@ class Home extends Component {
               editable={this.state.editable}
             />
           </div>
+          <div style={{ marginTop: '4px'}}>
+            <IconButton type="share" onPress={() => {}}/>
+            <IconButton type="get_app" onPress={this.handleDownload} />
+          </div>
         </div>
       </div>
     )
   }
 }
 
-const mapStateToProps = ({ color, drawers }) => ({ color, drawers })
+const mapStateToProps = ({ canvas, drawers }) => ({ color: canvas.present.global.color, drawers })
 
 const mapDispatchToProps = {
-  getDrawers: drawerActions.getDrawers
+  getDrawers: drawerActions.getDrawers,
+  redo: ActionCreators.redo,
+  undo: ActionCreators.undo,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home)

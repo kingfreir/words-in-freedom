@@ -93,7 +93,8 @@ class SentenceControls extends Component {
             onChange={this.handleParameter('height')}
             value={(state && state.height) || (props && props.font.size)}
             style={baseStyle.slider}
-            type="loop"
+            type="line_height"
+            label="A"
           />
           <Slider
             color={color}
@@ -111,7 +112,7 @@ class SentenceControls extends Component {
             onChange={this.handleParameter('spacing')}
             value={(state && state.spacing) || (props && props.font.spacing)}
             style={baseStyle.slider}
-            type="loop"
+            type="line_spacing"
           />
         </div>
       </div>
@@ -124,7 +125,10 @@ const styles = color => ({
     display: 'flex',
     flexDirection: 'column',
     flexWrap: 'wrap',
-    flex: 1,
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
   },
   slider: {
   },
@@ -147,6 +151,9 @@ const styles = color => ({
   }
 })
 
-const mapStateToProps = ({ color, fonts }) => ({ color, fonts: fonts.fonts })
+const mapStateToProps = ({ canvas }) => ({
+  color: canvas.present.global.color,
+  fonts: canvas.present.global.fonts.fonts,
+})
 
 export default connect(mapStateToProps)(SentenceControls)

@@ -1,5 +1,6 @@
 .header {
   margin-left: 0;
+  margin-right: 28px;
   flex: 1;
   justify-content: flex-end;
   align-items: flex-end;
