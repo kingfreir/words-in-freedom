@@ -15,6 +15,7 @@ class Sentence extends Component {
     }).isRequired,
     offsetParent: PropTypes.any.isRequired,
     onClick: PropTypes.func.isRequired,
+    onClickOver: PropTypes.func.isRequired,
     selected: PropTypes.bool,
     editable: PropTypes.bool,
   }
@@ -133,6 +134,7 @@ class Sentence extends Component {
       initialX,
       initialY,
       onClick,
+      onClickOver,
       editable,
       ...props
     } = this.props
@@ -151,7 +153,7 @@ class Sentence extends Component {
         disabled={editable}
         {...props}
       >
-        <div style={{ position: 'absolute' }} onClick={onClick}>
+        <div style={{ position: 'absolute' }} onClick={onClick} onClickCapture={onClickOver}>
           <span
             ref={this.span}
             contentEditable={editable ? 'true' : 'false'}

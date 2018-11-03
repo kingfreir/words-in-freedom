@@ -33,6 +33,10 @@ class Canvas extends Component {
 
     this.sentences = {}
     this.canvas = React.createRef()
+
+    this.state = {
+      isDragging: false,
+    }
   }
 
   componentWillReceiveProps({ requestDownload }) {
@@ -81,7 +85,7 @@ class Canvas extends Component {
   }
 
   handleSentenceCreation = (e) => {
-    if((e.target !== this.canvas.current) || this.props.editable) return
+    if((e.target !== this.canvas.current) || this.props.editable || this.state.isDragging) return
     e.persist()
     this.props.onSentenceCreation()
     this.props.updateCanvas({
@@ -107,6 +111,8 @@ class Canvas extends Component {
         {Object.values(canvas.content).map((item) => (
           <Sentence
             ref={ref => this.handleSentenceRef(ref, item.id)}
+            onStart={() => this.setState({ isDragging: true })}
+            onClickOver={() => this.setState({ isDragging: false })}
             item={item}
             onClick={this.handleSentenceClick(item.id)}
             selected={canvas.selected === item.id}
