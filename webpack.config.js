@@ -2,6 +2,7 @@ const path = require('path')
 const webpack = require('webpack')
 const HtmlWebPackPlugin = require('html-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+let FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 
 module.exports = (env, argv) => ({
   entry: [
@@ -24,11 +25,12 @@ module.exports = (env, argv) => ({
     ]
   },
   plugins: [
+    new FaviconsWebpackPlugin('./src/mm-logo.png'),
     argv.mode === 'development' ? new webpack.HotModuleReplacementPlugin() : false,
     new HtmlWebPackPlugin({
       template: './src/index.html',
       filename: './index.html'
-    })
+    }),
   ].filter(Boolean),
   module: {
     rules: [
@@ -39,7 +41,7 @@ module.exports = (env, argv) => ({
           loader: 'babel-loader',
         }
       }, {
-        test: /\.(ttf|otf|woff|woff2|svg)$/,
+        test: /\.(ttf|otf|woff|woff2|svg|ico|png)$/,
         use: {
           loader: "file-loader",
         },
