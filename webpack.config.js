@@ -2,7 +2,6 @@ const path = require('path')
 const webpack = require('webpack')
 const HtmlWebPackPlugin = require('html-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
-let FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 
 module.exports = (env, argv) => ({
   entry: [
@@ -25,7 +24,6 @@ module.exports = (env, argv) => ({
     ]
   },
   plugins: [
-    new FaviconsWebpackPlugin('./src/mm-logo.png'),
     argv.mode === 'development' ? new webpack.HotModuleReplacementPlugin() : false,
     new HtmlWebPackPlugin({
       template: './src/index.html',
