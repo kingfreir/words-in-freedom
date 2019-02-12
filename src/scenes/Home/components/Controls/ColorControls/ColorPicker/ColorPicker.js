@@ -17,6 +17,8 @@ class ColoPicker extends Component {
   }
 }
 
+
+//Estilo do color picker
 const styles = {
   container: {
     position: 'relative',
