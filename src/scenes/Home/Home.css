@@ -3,13 +3,14 @@
   flex-direction: column;
   flex: 1;
   padding: 10px;
-  margin: 20px;
+  margin: 0px;
 }
 
 html, body {
   height: 100%;
 }
 
+/*margem à volta da canvas*/
 body {
-  margin: 0;
+  margin: 20px;
 }
