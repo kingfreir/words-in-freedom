@@ -2,7 +2,7 @@ export default {
   bordered: color => ({
     borderStyle: 'solid',
     borderColor: color.foreground,
-    borderWidth: '1px',
+    borderWidth: '0px',
     margin: '4px',
   }),
   inverted: {

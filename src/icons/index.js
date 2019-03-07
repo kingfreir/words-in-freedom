@@ -19,6 +19,7 @@ const redo = require('./sharp-redo-24px.svg')
 const line_height = require('./format-line-spacing.svg')
 const line_spacing = require('./arrow-left-right-bold-outline.svg')
 
+
 export default {
   create,
   done,
