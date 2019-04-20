@@ -1,34 +1,31 @@
-const path = require('path')
-const webpack = require('webpack')
-const HtmlWebPackPlugin = require('html-webpack-plugin')
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const path = require("path");
+const webpack = require("webpack");
+const HtmlWebPackPlugin = require("html-webpack-plugin");
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 
 module.exports = (env, argv) => ({
-  entry: [
-    'react-hot-loader/patch',
-    './src/index.js',
-  ],
+  entry: ["react-hot-loader/patch", "./src/index.js"],
   output: {
-    path: path.join(__dirname, '/build'),
-    filename: 'bundle.js',
-    publicPath: '/'
+    path: path.join(__dirname, "/build"),
+    filename: "bundle.js",
+    publicPath: "/"
   },
   devServer: {
-    contentBase: './build',
-    publicPath: '/',
+    contentBase: "./build",
+    publicPath: "/",
     hot: true
   },
   optimization: {
-    minimizer: [
-      new UglifyJsPlugin()
-    ]
+    minimizer: [new UglifyJsPlugin()]
   },
   plugins: [
-    argv.mode === 'development' ? new webpack.HotModuleReplacementPlugin() : false,
+    argv.mode === "development"
+      ? new webpack.HotModuleReplacementPlugin()
+      : false,
     new HtmlWebPackPlugin({
-      template: './src/index.html',
-      filename: './index.html'
-    }),
+      template: "./src/index.html",
+      filename: "./index.html"
+    })
   ].filter(Boolean),
   module: {
     rules: [
@@ -36,31 +33,32 @@ module.exports = (env, argv) => ({
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader',
+          loader: "babel-loader"
         }
-      }, {
+      },
+      {
         test: /\.(ttf|otf|woff|woff2|svg|ico|png)$/,
         use: {
-          loader: "file-loader",
-        },
-      }, {
+          loader: "file-loader"
+        }
+      },
+      {
         test: /\.(css)$/,
         use: [
           {
-            loader: 'style-loader'
+            loader: "style-loader"
           },
           {
-            loader: 'css-loader',
+            loader: "css-loader",
             options: {
               modules: true,
               importLoaders: 1,
-              localIdentName: '[name]',
-              sourceMap: true,
-              minimize: true
+              localIdentName: "[name]",
+              sourceMap: true
             }
           }
         ]
       }
     ]
   }
-})
+});
