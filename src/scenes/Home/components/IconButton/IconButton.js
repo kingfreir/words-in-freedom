@@ -38,7 +38,7 @@ class IconButton extends Component {
       <ReactSVG
         src={icons[type] || icons.done}
         className={css.iconButton}
-        svgStyle={{ ...styles(color, disabled), ...style }}
+        style={{ ...styles(color, disabled), ...style }}
         onClick={disabled ? () => {} : onPress}
         onMouseDown={hold ? this.handleHoldDown : () => {}}
         onMouseUp={hold ? this.handleLetGo : () => {}}
