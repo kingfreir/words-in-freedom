@@ -53,8 +53,6 @@ module.exports = (env, argv) => ({
             options: {
               modules: true,
               importLoaders: 1,
-              localIdentName: "[name]",
-              sourceMap: true
             }
           }
         ]
