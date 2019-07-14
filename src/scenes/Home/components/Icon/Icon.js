@@ -7,7 +7,7 @@ import icons from "../../../../icons";
 const Icon = ({ type, color, style }) => (
   <ReactSVG
     src={icons[type] || icons.done}
-    svgStyle={{ ...styles(color), ...style }}
+    svgstyle={{ ...styles(color), ...style }}
   />
 );
 
