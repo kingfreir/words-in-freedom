@@ -6,12 +6,15 @@ class Sentence extends Component {
   static propTypes = {
     initialX: PropTypes.number.isRequired,
     initialY: PropTypes.number.isRequired,
-    color: PropTypes.shape({}).isRequired,
+    color: PropTypes.shape({
+      foreground: PropTypes.string
+    }).isRequired,
     sentence: PropTypes.string.isRequired,
     font: PropTypes.shape({
       family: PropTypes.string.isRequired,
       size: PropTypes.string.isRequired,
-      rotation: PropTypes.string.isRequired
+      rotation: PropTypes.string.isRequired,
+      spacing: PropTypes.string
     }).isRequired,
     offsetParent: PropTypes.any.isRequired,
     onClick: PropTypes.func.isRequired,

@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import Icon from '../../Icon/Icon'
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import Icon from "../../Icon/Icon";
 
 class Slider extends Component {
   static propTypes = {
@@ -11,47 +11,41 @@ class Slider extends Component {
     color: PropTypes.shape({}).isRequired,
     step: PropTypes.number,
     value: PropTypes.string,
-    style: PropTypes.shape({}),
-  }
-  
+    style: PropTypes.shape({})
+  };
+
   static defaultProps = {
     minValue: 0,
     initialValue: 0,
-    type: 'format_size',
+    type: "format_size",
     step: 1,
-    style: {},
-  }
+    style: {}
+  };
 
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
-      value: this.props.value,
-    }
+      value: this.props.value
+    };
   }
 
-  componentWillReceiveProps({ value }) {
-    this.setState({ value })
+  componentDidUpdate(prevProps) {
+    if (prevProps.value !== this.props.value)
+      this.setState({ value: this.props.value });
   }
 
-  onChange = (value) => {
-    this.setState({ value })
-    this.props.onChange(value)
-  }
+  onChange = value => {
+    this.setState({ value });
+    this.props.onChange(value);
+  };
 
   render() {
-    const {
-      color,
-      minValue,
-      maxValue,
-      type,
-      step,
-      style,
-    } = this.props
+    const { color, minValue, maxValue, type, step, style } = this.props;
 
-    const baseStyle = styles(color)
+    const baseStyle = styles(color);
     return (
-      <div style={{ ...baseStyle.container, ...style}}>
+      <div style={{ ...baseStyle.container, ...style }}>
         <Icon type={type} />
         <input
           className="slider"
@@ -64,42 +58,42 @@ class Slider extends Component {
           onChange={ev => this.onChange(ev.nativeEvent.target.value)}
         />
       </div>
-    )
+    );
   }
 }
 
 const styles = color => ({
   slider: {
-    height: '2px',
-    outline: 'none',
-    width: '100%',
+    height: "2px",
+    outline: "none",
+    width: "100%"
   },
   container: {
-    position: 'relative',
-    flexDirection: 'row',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-    marginTop: '4px',
-    marginBottom: '4px',
-    height: '20px',
+    position: "relative",
+    flexDirection: "row",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "flex-start",
+    marginTop: "4px",
+    marginBottom: "4px",
+    height: "20px"
   },
   value: {
-    fontFamily: 'arial',
-    fontSize: '14px',
-    width: '20px',
-    marginRight: '4px',
-    textAlign: 'center',
+    fontFamily: "arial",
+    fontSize: "14px",
+    width: "20px",
+    marginRight: "4px",
+    textAlign: "center",
     color: color.foreground
   },
   label: {
-    fontFamily: 'arial',
-    fontSize: '10px',
-    width: '50px',
-    textAlign: 'center',
+    fontFamily: "arial",
+    fontSize: "10px",
+    width: "50px",
+    textAlign: "center",
     color: color.foreground,
-    marginRight: '8px',
+    marginRight: "8px"
   }
-})
+});
 
-export default Slider
+export default Slider;

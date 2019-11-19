@@ -24,7 +24,10 @@ class Canvas extends Component {
     editable: PropTypes.bool.isRequired,
     onSentenceCreation: PropTypes.func.isRequired,
     updateCanvas: PropTypes.func.isRequired,
-    canvas: PropTypes.shape({}).isRequired,
+    canvas: PropTypes.shape({
+      content: PropTypes.shape({}),
+      selected: PropTypes.string
+    }).isRequired,
     editSentence: PropTypes.func.isRequired,
     selectSentence: PropTypes.func.isRequired
   };
@@ -40,8 +43,9 @@ class Canvas extends Component {
     };
   }
 
-  componentWillReceiveProps({ requestDownload }) {
-    if (requestDownload && requestDownload !== this.props.requestDownload) {
+  componentDidUpdate(prevProps) {
+    const { requestDownload } = this.props;
+    if (requestDownload && requestDownload !== prevProps.requestDownload) {
       this.handleCanvas();
     }
   }
@@ -179,7 +183,4 @@ const mapDispatchToProps = {
   selectSentence: canvasActions.selectSentence
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Canvas);
+export default connect(mapStateToProps, mapDispatchToProps)(Canvas);

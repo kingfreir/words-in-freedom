@@ -1,35 +1,33 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-import { themeStyles } from '../../../../theme'
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { themeStyles } from "../../../../theme";
 
-import DrawerItem from './components/DrawerItem/DrawerItem'
+import DrawerItem from "./components/DrawerItem/DrawerItem";
 
 class Drawers extends Component {
   static propTypes = {
     data: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-    color: PropTypes.shape({}).isRequired,
-  }
+    color: PropTypes.shape({}).isRequired
+  };
 
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
-      openDrawer: null,
-    }
+      openDrawer: null
+    };
   }
 
-  onDrawerOpen = index => this.setState(state => {
-    return {
-      openDrawer: index === state.openDrawer ? null : index,
-    }
-  })
+  onDrawerOpen = index =>
+    this.setState(state => {
+      return {
+        openDrawer: index === state.openDrawer ? null : index
+      };
+    });
 
   render() {
-    const {
-      data,
-      color,
-    } = this.props
+    const { data, color } = this.props;
 
     return (
       <div style={{ ...styles.container, ...themeStyles.inverted }}>
@@ -40,21 +38,24 @@ class Drawers extends Component {
             color={color}
             onOpen={() => this.onDrawerOpen(index)}
             open={this.state.openDrawer === index}
-          />))}
+          />
+        ))}
       </div>
-    )
+    );
   }
 }
 
 const styles = {
   container: {
     flex: 0.8,
-    display:'flex',
-    flexDirection: 'column',
-    position: 'relative'
-  },
-}
+    display: "flex",
+    flexDirection: "column",
+    position: "relative"
+  }
+};
 
-const mapStateToProps = ({ canvas }) => ({ color: canvas.present.global.color })
+const mapStateToProps = ({ canvas }) => ({
+  color: canvas.present.global.color
+});
 
-export default connect(mapStateToProps)(Drawers)
+export default connect(mapStateToProps)(Drawers);
